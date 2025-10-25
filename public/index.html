@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fadia Bakery - เติมความหวานให้ทุกโอกาสพิเศษ</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="container">
+            <div class="nav-container">
+                <a href="/" class="logo">🍰 Fadia Bakery</a>
+                <ul class="nav-menu">
+                    <li><a href="/" class="text-pink">หน้าแรก</a></li>
+                    <li><a href="/products">เค้กทั้งหมด</a></li>
+                    <li><a href="/custom-order">สั่งทำเค้ก</a></li>
+                    <li><a href="/about">เกี่ยวกับเรา</a></li>
+                    <li><a href="/contact">ติดต่อเรา</a></li>
+                    <li><a href="/cart">ตะกร้า</a></li>
+                    <li><a href="/member-login">เข้าสู่ระบบ</a></li>
+                    <li><a href="/member-register">สมัครสมาชิก</a></li>
+                    <li><a href="/feedback">ข้อเสนอแนะ</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container">
+            <div class="fade-in-up">
+                <h1>Fadia Bakery</h1>
+                <p>เติมความหวานให้ทุกโอกาสพิเศษ ด้วยเค้กที่ทำด้วยใจและความใส่ใจในทุกชิ้น</p>
+                <div class="hero-actions">
+                    <a href="/custom-order" class="btn btn-primary btn-large">
+                        🎂 สั่งทำเค้กในฝันของคุณ
+                    </a>
+                    <a href="/products" class="btn btn-secondary btn-large">
+                        🍰 ดูเค้กทั้งหมด
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Best Sellers Section -->
+    <section class="section">
+        <div class="container">
+            <div class="section-header">
+                <h2>✨ เค้กยอดนิยมของเรา ✨</h2>
+                <p>เค้กที่ลูกค้าชื่นชอบและสั่งซื้อมากที่สุด</p>
+            </div>
+            <div class="grid grid-3">
+                <div class="card product-card">
+                    <img src="https://images.unsplash.com/photo-1578985545062-69928b1d9587?w=400&h=300&fit=crop" alt="เค้กช็อคโกแลต">
+                    <h3>เค้กช็อคโกแลตคลาสสิก</h3>
+                    <div class="price">฿450</div>
+                    <p>เค้กช็อคโกแลตเข้มข้น พร้อมครีมช็อคโกแลตและผลเบอร์รี่สด</p>
+                    <button class="btn btn-primary" onclick="addToCart('chocolate-cake')">
+                        <i class="fas fa-heart"></i> เพิ่มลงตะกร้า
+                    </button>
+                </div>
+                <div class="card product-card">
+                    <img src="https://images.unsplash.com/photo-1563729784474-d77dbb933a9e?w=400&h=300&fit=crop" alt="เค้กสตรอว์เบอร์รี่">
+                    <h3>เค้กสตรอว์เบอร์รี่สด</h3>
+                    <div class="price">฿380</div>
+                    <p>เค้กวนิลาเบาๆ พร้อมสตรอว์เบอร์รี่สดและครีมสด</p>
+                    <button class="btn btn-primary" onclick="addToCart('strawberry-cake')">
+                        <i class="fas fa-heart"></i> เพิ่มลงตะกร้า
+                    </button>
+                </div>
+                <div class="card product-card">
+                    <img src="https://images.unsplash.com/photo-1464349095431-e9a21285b5f3?w=400&h=300&fit=crop" alt="เค้กเรดเวลเวต">
+                    <h3>เค้กเรดเวลเวต</h3>
+                    <div class="price">฿520</div>
+                    <p>เค้กสีแดงเข้ม พร้อมครีมชีสและผลไม้สด</p>
+                    <button class="btn btn-primary" onclick="addToCart('red-velvet-cake')">
+                        <i class="fas fa-heart"></i> เพิ่มลงตะกร้า
+                    </button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Custom Cake Showcase -->
+    <section class="section bg-pink">
+        <div class="container">
+            <div class="section-header">
+                <h2>🎨 สร้างเค้กในฝันของคุณ</h2>
+                <p>ออกแบบเค้กตามใจคุณใน 3 ขั้นตอนง่ายๆ</p>
+            </div>
+            <div class="grid grid-3">
+                <div class="card text-center">
+                    <div class="step-number" style="margin: 0 auto var(--spacing-sm) auto;">1</div>
+                    <h3>เลือกสไตล์</h3>
+                    <p>เลือกขนาด รสชาติ และธีมสีที่คุณชอบ</p>
+                </div>
+                <div class="card text-center">
+                    <div class="step-number" style="margin: 0 auto var(--spacing-sm) auto;">2</div>
+                    <h3>บอกรายละเอียด</h3>
+                    <p>บอกเราว่าคุณต้องการอะไรบนเค้ก</p>
+                </div>
+                <div class="card text-center">
+                    <div class="step-number" style="margin: 0 auto var(--spacing-sm) auto;">3</div>
+                    <h3>รอรับเค้กสุดพิเศษ</h3>
+                    <p>เราจะทำเค้กให้คุณตามที่ต้องการ</p>
+                </div>
+            </div>
+            <div class="text-center mt-lg">
+                <a href="/custom-order" class="btn btn-primary btn-large">
+                    เริ่มต้นออกแบบเค้ก
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Customer Testimonials -->
+    <section class="section">
+        <div class="container">
+            <div class="section-header">
+                <h2>💝 ความคิดเห็นจากลูกค้า</h2>
+                <p>เสียงจากลูกค้าที่ไว้วางใจเรา</p>
+            </div>
+            <div class="grid grid-2">
+                <div class="card">
+                    <div style="display: flex; align-items: center; margin-bottom: var(--spacing-sm);">
+                        <img src="https://images.unsplash.com/photo-1494790108755-2616b612b786?w=60&h=60&fit=crop&crop=face" 
+                             alt="ลูกค้า" style="width: 60px; height: 60px; border-radius: 50%; margin-right: var(--spacing-sm);">
+                        <div>
+                            <h4>คุณสมใจ</h4>
+                            <div style="color: var(--soft-gold);">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                            </div>
+                        </div>
+                    </div>
+                    <p>"เค้กสวยมาก รสชาติดีมาก ลูกสาวชอบมากเลยค่ะ ขอบคุณมากๆ"</p>
+                </div>
+                <div class="card">
+                    <div style="display: flex; align-items: center; margin-bottom: var(--spacing-sm);">
+                        <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=60&h=60&fit=crop&crop=face" 
+                             alt="ลูกค้า" style="width: 60px; height: 60px; border-radius: 50%; margin-right: var(--spacing-sm);">
+                        <div>
+                            <h4>คุณวิชัย</h4>
+                            <div style="color: var(--soft-gold);">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                            </div>
+                        </div>
+                    </div>
+                    <p>"สั่งทำเค้กวันเกิดให้ลูก เค้กออกมาสวยมากเกินคาด ลูกชอบมากครับ"</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer style="background-color: var(--text-gray); color: var(--white); padding: var(--spacing-xl) 0; text-align: center;">
+        <div class="container">
+            <h3 style="color: var(--primary-pink); margin-bottom: var(--spacing-sm);">🍰 Fadia Bakery</h3>
+            <p>เติมความหวานให้ทุกโอกาสพิเศษ</p>
+            <p style="margin-top: var(--spacing-md); font-size: 0.9rem;">
+                📍 123 ถนนสุขุมวิท กรุงเทพฯ 10110 | 📞 02-123-4567 | 📧 info@fadiabakery.com
+            </p>
+        </div>
+    </footer>
+
+    <script>
+        function addToCart(productId) {
+            alert('เพิ่ม ' + productId + ' ลงตะกร้าเรียบร้อยแล้ว! 🎂');
+        }
+
+        // Smooth scrolling for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+    </script>
+</body>
+</html>

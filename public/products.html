@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>เค้กทั้งหมด - Fadia Bakery</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="container">
+            <div class="nav-container">
+                <a href="/" class="logo">🍰 Fadia Bakery</a>
+                <ul class="nav-menu">
+                    <li><a href="/">หน้าแรก</a></li>
+                    <li><a href="/products" class="text-pink">เค้กทั้งหมด</a></li>
+                    <li><a href="/custom-order">สั่งทำเค้ก</a></li>
+                    <li><a href="/about">เกี่ยวกับเรา</a></li>
+                    <li><a href="/contact">ติดต่อเรา</a></li>
+                    <li><a href="/cart">ตะกร้า</a></li>
+                    <li><a href="/member-login">เข้าสู่ระบบ</a></li>
+                    <li><a href="/member-register">สมัครสมาชิก</a></li>
+                    <li><a href="/feedback">ข้อเสนอแนะ</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Page Header -->
+    <section class="hero">
+        <div class="container">
+            <h1>🍰 เค้กทั้งหมดของเรา</h1>
+            <p>เลือกเค้กที่คุณชื่นชอบจากคอลเลกชันหลากหลายของเรา</p>
+        </div>
+    </section>
+
+    <!-- Filter & Sort Bar -->
+    <section class="section" style="padding-top: 0;">
+        <div class="container">
+            <div class="card" style="margin-bottom: var(--spacing-lg);">
+                <div style="display: flex; gap: var(--spacing-md); align-items: center; flex-wrap: wrap;">
+                    <div class="form-group" style="margin-bottom: 0; min-width: 200px;">
+                        <label>กรองตามหมวดหมู่:</label>
+                        <select class="form-control" id="categoryFilter" onchange="filterProducts()">
+                            <option value="">ทั้งหมด</option>
+                            <option value="birthday">เค้กวันเกิด</option>
+                            <option value="cupcake">คัพเค้ก</option>
+                            <option value="dessert">ขนมอบ</option>
+                            <option value="drink">เครื่องดื่ม</option>
+                        </select>
+                    </div>
+                    <div class="form-group" style="margin-bottom: 0; min-width: 200px;">
+                        <label>เรียงลำดับ:</label>
+                        <select class="form-control" id="sortFilter" onchange="sortProducts()">
+                            <option value="popular">ยอดนิยม</option>
+                            <option value="price-low">ราคา (น้อยไปมาก)</option>
+                            <option value="price-high">ราคา (มากไปน้อย)</option>
+                            <option value="name">ชื่อ (A-Z)</option>
+                        </select>
+                    </div>
+                    <div style="margin-left: auto;">
+                        <span id="productCount" style="color: var(--text-gray); font-weight: 500;">แสดง 12 รายการ</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Product Grid -->
+    <section class="section" style="padding-top: 0;">
+        <div class="container">
+            <div class="grid grid-3" id="productGrid">
+                <!-- Birthday Cakes -->
+                <div class="card product-card" data-category="birthday" data-price="450" data-popularity="5">
+                    <img src="https://images.unsplash.com/photo-1578985545062-69928b1d9587?w=400&h=300&fit=crop" alt="เค้กช็อคโกแลตวันเกิด">
+                    <h3>เค้กช็อคโกแลตวันเกิด</h3>
+                    <div class="price">฿450</div>
+                    <p>เค้กช็อคโกแลตเข้มข้น พร้อมครีมช็อคโกแลตและผลเบอร์รี่สด</p>
+                    <button class="btn btn-primary" onclick="addToCart('chocolate-birthday')">
+                        <i class="fas fa-heart"></i> เพิ่มลงตะกร้า
+                    </button>
+                </div>
+
+                <div class="card product-card" data-category="birthday" data-price="380" data-popularity="4">
+                    <img src="https://images.unsplash.com/photo-1563729784474-d77dbb933a9e?w=400&h=300&fit=crop" alt="เค้กสตรอว์เบอร์รี่วันเกิด">
+                    <h3>เค้กสตรอว์เบอร์รี่วันเกิด</h3>
+                    <div class="price">฿380</div>
+                    <p>เค้กวนิลาเบาๆ พร้อมสตรอว์เบอร์รี่สดและครีมสด</p>
+                    <button class="btn btn-primary" onclick="addToCart('strawberry-birthday')">
+                        <i class="fas fa-heart"></i> เพิ่มลงตะกร้า
+                    </button>
+                </div>
+
+                <div class="card product-card" data-category="birthday" data-price="520" data-popularity="5">
+                    <img src="https://images.unsplash.com/photo-1464349095431-e9a21285b5f3?w=400&h=300&fit=crop" alt="เค้กเรดเวลเวตวันเกิด">
+                    <h3>เค้กเรดเวลเวตวันเกิด</h3>
+                    <div class="price">฿520</div>
+                    <p>เค้กสีแดงเข้ม พร้อมครีมชีสและผลไม้สด</p>
+                    <button class="btn btn-primary" onclick="addToCart('red-velvet-birthday')">
+                        <i class="fas fa-heart"></i> เพิ่มลงตะกร้า
+                    </button>
+                </div>
+
+                <!-- Cupcakes -->
+                <div class="card product-card" data-category="cupcake" data-price="45" data-popularity="4">
+                    <img src="https://images.unsplash.com/photo-1576618148400-f54bed99fcfd?w=400&h=300&fit=crop" alt="คัพเค้กวานิลลา">
+                    <h3>คัพเค้กวานิลลา</h3>
+                    <div class="price">฿45</div>
+                    <p>คัพเค้กเนื้อนุ่ม รสวานิลลา พร้อมครีมสด</p>
+                    <button class="btn btn-primary" onclick="addToCart('vanilla-cupcake')">
+                        <i class="fas fa-heart"></i> เพิ่มลงตะกร้า
+                    </button>
+                </div>
+
+                <div class="card product-card" data-category="cupcake" data-price="50" data-popularity="5">
+                    <img src="https://images.unsplash.com/photo-1486427944299-d1955d23e34d?w=400&h=300&fit=crop" alt="คัพเค้กช็อคโกแลต">
+                    <h3>คัพเค้กช็อคโกแลต</h3>
+                    <div class="price">฿50</div>
+                    <p>คัพเค้กช็อคโกแลตเข้มข้น พร้อมครีมช็อคโกแลต</p>
+                    <button class="btn btn-primary" onclick="addToCart('chocolate-cupcake')">
+                        <i class="fas fa-heart"></i> เพิ่มลงตะกร้า
+                    </button>
+                </div>
+
+                <div class="card product-card" data-category="cupcake" data-price="48" data-popularity="3">
+                    <img src="https://images.unsplash.com/photo-1586985289688-ca3cf47d3e6e?w=400&h=300&fit=crop" alt="คัพเค้กสตรอว์เบอร์รี่">
+                    <h3>คัพเค้กสตรอว์เบอร์รี่</h3>
+                    <div class="price">฿48</div>
+                    <p>คัพเค้กสตรอว์เบอร์รี่ พร้อมครีมสดและผลเบอร์รี่</p>
+                    <button class="btn btn-primary" onclick="addToCart('strawberry-cupcake')">
+                        <i class="fas fa-heart"></i> เพิ่มลงตะกร้า
+                    </button>
+                </div>
+
+                <!-- Desserts -->
+                <div class="card product-card" data-category="dessert" data-price="120" data-popularity="4">
+                    <img src="https://images.unsplash.com/photo-1551024506-0bccd828d307?w=400&h=300&fit=crop" alt="ชีสเค้ก">
+                    <h3>ชีสเค้ก</h3>
+                    <div class="price">฿120</div>
+                    <p>ชีสเค้กเนื้อนุ่ม พร้อมผลไม้สด</p>
+                    <button class="btn btn-primary" onclick="addToCart('cheesecake')">
+                        <i class="fas fa-heart"></i> เพิ่มลงตะกร้า
+                    </button>
+                </div>
+
+                <div class="card product-card" data-category="dessert" data-price="80" data-popularity="3">
+                    <img src="https://images.unsplash.com/photo-1563805042-7684c019e1cb?w=400&h=300&fit=crop" alt="ทาร์ตผลไม้">
+                    <h3>ทาร์ตผลไม้</h3>
+                    <div class="price">฿80</div>
+                    <p>ทาร์ตกรอบ พร้อมผลไม้สดหลากชนิด</p>
+                    <button class="btn btn-primary" onclick="addToCart('fruit-tart')">
+                        <i class="fas fa-heart"></i> เพิ่มลงตะกร้า
+                    </button>
+                </div>
+
+                <div class="card product-card" data-category="dessert" data-price="90" data-popularity="4">
+                    <img src="https://images.unsplash.com/photo-1571115764595-644a1f56a55c?w=400&h=300&fit=crop" alt="มูสช็อคโกแลต">
+                    <h3>มูสช็อคโกแลต</h3>
+                    <div class="price">฿90</div>
+                    <p>มูสช็อคโกแลตเข้มข้น เนื้อนุ่มละมุน</p>
+                    <button class="btn btn-primary" onclick="addToCart('chocolate-mousse')">
+                        <i class="fas fa-heart"></i> เพิ่มลงตะกร้า
+                    </button>
+                </div>
+
+                <!-- Drinks -->
+                <div class="card product-card" data-category="drink" data-price="65" data-popularity="3">
+                    <img src="https://images.unsplash.com/photo-1544148103-0773bf10d330?w=400&h=300&fit=crop" alt="ชาเขียวลาเต้">
+                    <h3>ชาเขียวลาเต้</h3>
+                    <div class="price">฿65</div>
+                    <p>ชาเขียวญี่ปุ่น พร้อมนมสด</p>
+                    <button class="btn btn-primary" onclick="addToCart('green-tea-latte')">
+                        <i class="fas fa-heart"></i> เพิ่มลงตะกร้า
+                    </button>
+                </div>
+
+                <div class="card product-card" data-category="drink" data-price="55" data-popularity="4">
+                    <img src="https://images.unsplash.com/photo-1571934811356-5cc061b6821f?w=400&h=300&fit=crop" alt="กาแฟลาเต้">
+                    <h3>กาแฟลาเต้</h3>
+                    <div class="price">฿55</div>
+                    <p>กาแฟลาเต้เข้มข้น พร้อมโฟมนม</p>
+                    <button class="btn btn-primary" onclick="addToCart('coffee-latte')">
+                        <i class="fas fa-heart"></i> เพิ่มลงตะกร้า
+                    </button>
+                </div>
+
+                <div class="card product-card" data-category="drink" data-price="45" data-popularity="3">
+                    <img src="https://images.unsplash.com/photo-1556909114-f6e7ad7d3136?w=400&h=300&fit=crop" alt="น้ำผลไม้สด">
+                    <h3>น้ำผลไม้สด</h3>
+                    <div class="price">฿45</div>
+                    <p>น้ำผลไม้สด 100% ไม่ใส่น้ำตาล</p>
+                    <button class="btn btn-primary" onclick="addToCart('fresh-juice')">
+                        <i class="fas fa-heart"></i> เพิ่มลงตะกร้า
+                    </button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer style="background-color: var(--text-gray); color: var(--white); padding: var(--spacing-xl) 0; text-align: center;">
+        <div class="container">
+            <h3 style="color: var(--primary-pink); margin-bottom: var(--spacing-sm);">🍰 Fadia Bakery</h3>
+            <p>เติมความหวานให้ทุกโอกาสพิเศษ</p>
+            <p style="margin-top: var(--spacing-md); font-size: 0.9rem;">
+                📍 123 ถนนสุขุมวิท กรุงเทพฯ 10110 | 📞 02-123-4567 | 📧 info@fadiabakery.com
+            </p>
+        </div>
+    </footer>
+
+    <script>
+        function addToCart(productId) {
+            alert('เพิ่ม ' + productId + ' ลงตะกร้าเรียบร้อยแล้ว! 🎂');
+        }
+
+        function filterProducts() {
+            const category = document.getElementById('categoryFilter').value;
+            const products = document.querySelectorAll('.product-card');
+            let visibleCount = 0;
+
+            products.forEach(product => {
+                if (category === '' || product.dataset.category === category) {
+                    product.style.display = 'block';
+                    visibleCount++;
+                } else {
+                    product.style.display = 'none';
+                }
+            });
+
+            document.getElementById('productCount').textContent = `แสดง ${visibleCount} รายการ`;
+        }
+
+        function sortProducts() {
+            const sortBy = document.getElementById('sortFilter').value;
+            const productGrid = document.getElementById('productGrid');
+            const products = Array.from(productGrid.querySelectorAll('.product-card'));
+
+            products.sort((a, b) => {
+                switch (sortBy) {
+                    case 'price-low':
+                        return parseInt(a.dataset.price) - parseInt(b.dataset.price);
+                    case 'price-high':
+                        return parseInt(b.dataset.price) - parseInt(a.dataset.price);
+                    case 'name':
+                        return a.querySelector('h3').textContent.localeCompare(b.querySelector('h3').textContent);
+                    case 'popular':
+                    default:
+                        return parseInt(b.dataset.popularity) - parseInt(a.dataset.popularity);
+                }
+            });
+
+            // Clear and re-append sorted products
+            productGrid.innerHTML = '';
+            products.forEach(product => {
+                productGrid.appendChild(product);
+            });
+        }
+
+        // Initialize product count
+        document.addEventListener('DOMContentLoaded', function() {
+            const totalProducts = document.querySelectorAll('.product-card').length;
+            document.getElementById('productCount').textContent = `แสดง ${totalProducts} รายการ`;
+        });
+    </script>
+</body>
+</html>

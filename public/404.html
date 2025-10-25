@@ -1,0 +1,300 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ไม่พบหน้า - Fadia Bakery</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        .error-hero {
+            background: linear-gradient(135deg, var(--pastel-pink) 0%, var(--light-cream) 100%);
+            padding: var(--spacing-xl) 0;
+            text-align: center;
+            min-height: 60vh;
+            display: flex;
+            align-items: center;
+        }
+        
+        .error-content {
+            max-width: 600px;
+            margin: 0 auto;
+        }
+        
+        .error-code {
+            font-size: 8rem;
+            font-weight: 700;
+            color: var(--primary-pink);
+            margin-bottom: var(--spacing-md);
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+        }
+        
+        .error-title {
+            font-size: 2.5rem;
+            color: var(--primary-pink);
+            margin-bottom: var(--spacing-md);
+        }
+        
+        .error-message {
+            font-size: 1.2rem;
+            color: var(--text-gray);
+            margin-bottom: var(--spacing-xl);
+        }
+        
+        .error-actions {
+            display: flex;
+            gap: var(--spacing-md);
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+        
+        .suggestions {
+            background-color: var(--white);
+            border-radius: var(--radius-lg);
+            padding: var(--spacing-xl);
+            margin-top: var(--spacing-xl);
+            box-shadow: 0 4px 20px var(--shadow);
+        }
+        
+        .suggestions h3 {
+            color: var(--primary-pink);
+            margin-bottom: var(--spacing-lg);
+            text-align: center;
+        }
+        
+        .suggestion-links {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: var(--spacing-md);
+        }
+        
+        .suggestion-link {
+            display: block;
+            padding: var(--spacing-md);
+            background-color: var(--pastel-pink);
+            border-radius: var(--radius-md);
+            text-decoration: none;
+            color: var(--text-gray);
+            transition: all 0.3s ease;
+            text-align: center;
+        }
+        
+        .suggestion-link:hover {
+            background-color: var(--primary-pink);
+            color: var(--white);
+            transform: translateY(-2px);
+        }
+        
+        .suggestion-link i {
+            font-size: 2rem;
+            color: var(--primary-pink);
+            margin-bottom: var(--spacing-sm);
+            display: block;
+        }
+        
+        .suggestion-link:hover i {
+            color: var(--white);
+        }
+        
+        .suggestion-link h4 {
+            margin-bottom: var(--spacing-xs);
+        }
+        
+        .suggestion-link p {
+            font-size: 0.9rem;
+            margin: 0;
+        }
+        
+        .floating-cake {
+            position: absolute;
+            font-size: 2rem;
+            color: var(--primary-pink);
+            opacity: 0.3;
+            animation: float 3s ease-in-out infinite;
+        }
+        
+        .floating-cake:nth-child(1) {
+            top: 20%;
+            left: 10%;
+            animation-delay: 0s;
+        }
+        
+        .floating-cake:nth-child(2) {
+            top: 30%;
+            right: 15%;
+            animation-delay: 1s;
+        }
+        
+        .floating-cake:nth-child(3) {
+            bottom: 30%;
+            left: 20%;
+            animation-delay: 2s;
+        }
+        
+        .floating-cake:nth-child(4) {
+            bottom: 20%;
+            right: 10%;
+            animation-delay: 0.5s;
+        }
+        
+        @keyframes float {
+            0%, 100% {
+                transform: translateY(0px);
+            }
+            50% {
+                transform: translateY(-20px);
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .error-code {
+                font-size: 6rem;
+            }
+            
+            .error-title {
+                font-size: 2rem;
+            }
+            
+            .error-actions {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .suggestion-links {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="container">
+            <div class="nav-container">
+                <a href="/" class="logo">🍰 Fadia Bakery</a>
+                <ul class="nav-menu">
+                    <li><a href="/">หน้าแรก</a></li>
+                    <li><a href="/products">เค้กทั้งหมด</a></li>
+                    <li><a href="/custom-order">สั่งทำเค้ก</a></li>
+                    <li><a href="/about">เกี่ยวกับเรา</a></li>
+                    <li><a href="/contact">ติดต่อเรา</a></li>
+                    <li><a href="/cart">ตะกร้า</a></li>
+                    <li><a href="/feedback">ข้อเสนอแนะ</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Error Hero -->
+    <section class="error-hero">
+        <div class="container">
+            <div class="error-content">
+                <!-- Floating Cakes -->
+                <div class="floating-cake">🍰</div>
+                <div class="floating-cake">🧁</div>
+                <div class="floating-cake">🍪</div>
+                <div class="floating-cake">🎂</div>
+                
+                <div class="error-code">404</div>
+                <h1 class="error-title">ไม่พบหน้าเว็บ</h1>
+                <p class="error-message">
+                    ขออภัยค่ะ หน้าเว็บที่คุณกำลังมองหาอาจจะถูกย้ายหรือไม่มีอยู่แล้ว<br>
+                    แต่ไม่ต้องกังวล เรายังมีเค้กอร่อยๆ รอคุณอยู่!
+                </p>
+                
+                <div class="error-actions">
+                    <a href="/" class="btn btn-primary btn-large">
+                        <i class="fas fa-home"></i> กลับหน้าแรก
+                    </a>
+                    <a href="/products" class="btn btn-secondary btn-large">
+                        <i class="fas fa-shopping-bag"></i> ดูเค้กทั้งหมด
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Suggestions -->
+    <section class="section">
+        <div class="container">
+            <div class="suggestions">
+                <h3>🍰 หน้าเว็บที่คุณอาจสนใจ</h3>
+                <div class="suggestion-links">
+                    <a href="/" class="suggestion-link">
+                        <i class="fas fa-home"></i>
+                        <h4>หน้าแรก</h4>
+                        <p>กลับไปหน้าแรกเพื่อดูเค้กยอดนิยม</p>
+                    </a>
+                    
+                    <a href="/products" class="suggestion-link">
+                        <i class="fas fa-birthday-cake"></i>
+                        <h4>เค้กทั้งหมด</h4>
+                        <p>เลือกชมเค้กหลากหลายแบบ</p>
+                    </a>
+                    
+                    <a href="/custom-order" class="suggestion-link">
+                        <i class="fas fa-palette"></i>
+                        <h4>สั่งทำเค้ก</h4>
+                        <p>ออกแบบเค้กในฝันของคุณ</p>
+                    </a>
+                    
+                    <a href="/about" class="suggestion-link">
+                        <i class="fas fa-heart"></i>
+                        <h4>เกี่ยวกับเรา</h4>
+                        <p>รู้จักเรื่องราวของ Fadia Bakery</p>
+                    </a>
+                    
+                    <a href="/contact" class="suggestion-link">
+                        <i class="fas fa-phone"></i>
+                        <h4>ติดต่อเรา</h4>
+                        <p>ข้อมูลการติดต่อและที่ตั้งร้าน</p>
+                    </a>
+                    
+                    <a href="/feedback" class="suggestion-link">
+                        <i class="fas fa-comment"></i>
+                        <h4>ข้อเสนอแนะ</h4>
+                        <p>ส่งข้อเสนอแนะหรือคำติชม</p>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer style="background-color: var(--text-gray); color: var(--white); padding: var(--spacing-xl) 0; text-align: center;">
+        <div class="container">
+            <h3 style="color: var(--primary-pink); margin-bottom: var(--spacing-sm);">🍰 Fadia Bakery</h3>
+            <p>เติมความหวานให้ทุกโอกาสพิเศษ</p>
+            <p style="margin-top: var(--spacing-md); font-size: 0.9rem;">
+                📍 123 ถนนสุขุมวิท กรุงเทพฯ 10110 | 📞 02-123-4567 | 📧 info@fadiabakery.com
+            </p>
+        </div>
+    </footer>
+
+    <script>
+        // Add some interactive fun
+        document.addEventListener('DOMContentLoaded', function() {
+            // Make floating cakes clickable
+            const floatingCakes = document.querySelectorAll('.floating-cake');
+            floatingCakes.forEach(cake => {
+                cake.addEventListener('click', function() {
+                    this.style.animation = 'none';
+                    this.style.transform = 'scale(1.5) rotate(360deg)';
+                    setTimeout(() => {
+                        this.style.animation = 'float 3s ease-in-out infinite';
+                        this.style.transform = '';
+                    }, 1000);
+                });
+            });
+
+            // Add random floating animation to cakes
+            setInterval(() => {
+                floatingCakes.forEach(cake => {
+                    const randomDelay = Math.random() * 2;
+                    cake.style.animationDelay = randomDelay + 's';
+                });
+            }, 5000);
+        });
+    </script>
+</body>
+</html>

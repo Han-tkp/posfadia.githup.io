@@ -1,0 +1,413 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ติดต่อเรา - Fadia Bakery</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        .contact-hero {
+            background: linear-gradient(135deg, var(--pastel-pink) 0%, var(--light-cream) 100%);
+            padding: var(--spacing-xl) 0;
+            text-align: center;
+        }
+        
+        .contact-hero h1 {
+            font-size: 3rem;
+            color: var(--primary-pink);
+            margin-bottom: var(--spacing-md);
+        }
+        
+        .contact-hero p {
+            font-size: 1.2rem;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+        
+        .contact-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: var(--spacing-xl);
+            margin-top: var(--spacing-xl);
+        }
+        
+        .contact-info {
+            background-color: var(--white);
+            border-radius: var(--radius-lg);
+            padding: var(--spacing-xl);
+            box-shadow: 0 4px 20px var(--shadow);
+        }
+        
+        .contact-info h2 {
+            color: var(--primary-pink);
+            margin-bottom: var(--spacing-lg);
+        }
+        
+        .contact-item {
+            display: flex;
+            align-items: center;
+            margin-bottom: var(--spacing-lg);
+            padding: var(--spacing-md);
+            border-radius: var(--radius-md);
+            transition: background-color 0.3s ease;
+        }
+        
+        .contact-item:hover {
+            background-color: var(--pastel-pink);
+        }
+        
+        .contact-item i {
+            font-size: 1.5rem;
+            color: var(--primary-pink);
+            margin-right: var(--spacing-md);
+            width: 30px;
+        }
+        
+        .contact-item div h3 {
+            color: var(--primary-pink);
+            margin-bottom: var(--spacing-xs);
+        }
+        
+        .contact-item div p {
+            margin: 0;
+            color: var(--text-gray);
+        }
+        
+        .contact-form {
+            background-color: var(--white);
+            border-radius: var(--radius-lg);
+            padding: var(--spacing-xl);
+            box-shadow: 0 4px 20px var(--shadow);
+        }
+        
+        .contact-form h2 {
+            color: var(--primary-pink);
+            margin-bottom: var(--spacing-lg);
+        }
+        
+        .form-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: var(--spacing-md);
+        }
+        
+        .map-section {
+            margin-top: var(--spacing-xl);
+            background-color: var(--pastel-pink);
+            padding: var(--spacing-xl) 0;
+        }
+        
+        .map-container {
+            background-color: var(--white);
+            border-radius: var(--radius-lg);
+            padding: var(--spacing-lg);
+            box-shadow: 0 4px 20px var(--shadow);
+            text-align: center;
+        }
+        
+        .map-placeholder {
+            background-color: #f0f0f0;
+            border-radius: var(--radius-md);
+            padding: var(--spacing-xl);
+            margin-top: var(--spacing-md);
+            color: var(--text-gray);
+        }
+        
+        .business-hours {
+            background-color: var(--white);
+            border-radius: var(--radius-lg);
+            padding: var(--spacing-lg);
+            margin-top: var(--spacing-lg);
+            box-shadow: 0 4px 20px var(--shadow);
+        }
+        
+        .business-hours h3 {
+            color: var(--primary-pink);
+            margin-bottom: var(--spacing-md);
+        }
+        
+        .hours-list {
+            list-style: none;
+            padding: 0;
+        }
+        
+        .hours-list li {
+            display: flex;
+            justify-content: space-between;
+            padding: var(--spacing-sm) 0;
+            border-bottom: 1px solid #e0e0e0;
+        }
+        
+        .hours-list li:last-child {
+            border-bottom: none;
+        }
+        
+        .hours-list .day {
+            font-weight: 500;
+            color: var(--text-gray);
+        }
+        
+        .hours-list .time {
+            color: var(--primary-pink);
+            font-weight: 500;
+        }
+        
+        @media (max-width: 768px) {
+            .contact-content {
+                grid-template-columns: 1fr;
+            }
+            
+            .form-row {
+                grid-template-columns: 1fr;
+            }
+            
+            .contact-hero h1 {
+                font-size: 2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="container">
+            <div class="nav-container">
+                <a href="/" class="logo">🍰 Fadia Bakery</a>
+                <ul class="nav-menu">
+                    <li><a href="/">หน้าแรก</a></li>
+                    <li><a href="/products">เค้กทั้งหมด</a></li>
+                    <li><a href="/custom-order">สั่งทำเค้ก</a></li>
+                    <li><a href="/about">เกี่ยวกับเรา</a></li>
+                    <li><a href="/contact" class="text-pink">ติดต่อเรา</a></li>
+                    <li><a href="/cart">ตะกร้า</a></li>
+                    <li><a href="/member-login">เข้าสู่ระบบ</a></li>
+                    <li><a href="/member-register">สมัครสมาชิก</a></li>
+                    <li><a href="/feedback">ข้อเสนอแนะ</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Contact Hero -->
+    <section class="contact-hero">
+        <div class="container">
+            <h1>📞 ติดต่อเรา</h1>
+            <p>เราพร้อมให้บริการและตอบคำถามทุกข้อสงสัยของคุณ</p>
+        </div>
+    </section>
+
+    <!-- Contact Content -->
+    <section class="section">
+        <div class="container">
+            <div class="contact-content">
+                <!-- Contact Information -->
+                <div class="contact-info">
+                    <h2>📋 ข้อมูลการติดต่อ</h2>
+                    
+                    <div class="contact-item">
+                        <i class="fas fa-map-marker-alt"></i>
+                        <div>
+                            <h3>ที่อยู่</h3>
+                            <p>123 ถนนสุขุมวิท แขวงคลองตัน เขตวัฒนา กรุงเทพฯ 10110</p>
+                        </div>
+                    </div>
+                    
+                    <div class="contact-item">
+                        <i class="fas fa-phone"></i>
+                        <div>
+                            <h3>เบอร์โทรศัพท์</h3>
+                            <p>02-123-4567</p>
+                        </div>
+                    </div>
+                    
+                    <div class="contact-item">
+                        <i class="fas fa-mobile-alt"></i>
+                        <div>
+                            <h3>มือถือ</h3>
+                            <p>081-234-5678</p>
+                        </div>
+                    </div>
+                    
+                    <div class="contact-item">
+                        <i class="fas fa-envelope"></i>
+                        <div>
+                            <h3>อีเมล</h3>
+                            <p>info@fadiabakery.com</p>
+                        </div>
+                    </div>
+                    
+                    <div class="contact-item">
+                        <i class="fab fa-line"></i>
+                        <div>
+                            <h3>Line</h3>
+                            <p>@fadiabakery</p>
+                        </div>
+                    </div>
+                    
+                    <div class="contact-item">
+                        <i class="fab fa-facebook"></i>
+                        <div>
+                            <h3>Facebook</h3>
+                            <p>Fadia Bakery Official</p>
+                        </div>
+                    </div>
+                    
+                    <div class="contact-item">
+                        <i class="fab fa-instagram"></i>
+                        <div>
+                            <h3>Instagram</h3>
+                            <p>@fadiabakery</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Contact Form -->
+                <div class="contact-form">
+                    <h2>💌 ส่งข้อความถึงเรา</h2>
+                    <form id="contactForm">
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label>ชื่อ-นามสกุล:</label>
+                                <input type="text" class="form-control" id="name" name="name" required>
+                            </div>
+                            <div class="form-group">
+                                <label>เบอร์โทรศัพท์:</label>
+                                <input type="tel" class="form-control" id="phone" name="phone" required>
+                            </div>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label>อีเมล:</label>
+                            <input type="email" class="form-control" id="email" name="email" required>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label>หัวข้อ:</label>
+                            <select class="form-control" id="subject" name="subject" required>
+                                <option value="">เลือกหัวข้อ</option>
+                                <option value="general">คำถามทั่วไป</option>
+                                <option value="order">สอบถามการสั่งซื้อ</option>
+                                <option value="custom">สอบถามการสั่งทำเค้กพิเศษ</option>
+                                <option value="delivery">สอบถามการจัดส่ง</option>
+                                <option value="complaint">ข้อร้องเรียน</option>
+                                <option value="other">อื่นๆ</option>
+                            </select>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label>ข้อความ:</label>
+                            <textarea class="form-control" id="message" name="message" rows="5" placeholder="กรุณาเขียนข้อความของคุณ..." required></textarea>
+                        </div>
+                        
+                        <div class="text-center">
+                            <button type="submit" class="btn btn-primary btn-large">
+                                <i class="fas fa-paper-plane"></i> ส่งข้อความ
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Map Section -->
+    <section class="map-section">
+        <div class="container">
+            <div class="section-header">
+                <h2>📍 ที่ตั้งร้าน</h2>
+                <p>มาหาเราได้ที่ร้าน หรือใช้บริการจัดส่ง</p>
+            </div>
+            
+            <div class="map-container">
+                <h3>🍰 Fadia Bakery</h3>
+                <p>123 ถนนสุขุมวิท แขวงคลองตัน เขตวัฒนา กรุงเทพฯ 10110</p>
+                
+                <div class="map-placeholder">
+                    <i class="fas fa-map-marked-alt" style="font-size: 3rem; color: var(--primary-pink); margin-bottom: var(--spacing-md);"></i>
+                    <p>แผนที่ Google Maps</p>
+                    <p style="font-size: 0.9rem; color: var(--text-gray);">คลิกเพื่อดูเส้นทาง</p>
+                </div>
+                
+                <div style="margin-top: var(--spacing-md);">
+                    <a href="https://maps.google.com" target="_blank" class="btn btn-primary">
+                        <i class="fas fa-directions"></i> ดูเส้นทาง
+                    </a>
+                </div>
+            </div>
+            
+            <div class="business-hours">
+                <h3>🕒 เวลาเปิด-ปิดร้าน</h3>
+                <ul class="hours-list">
+                    <li>
+                        <span class="day">จันทร์ - ศุกร์</span>
+                        <span class="time">08:00 - 20:00</span>
+                    </li>
+                    <li>
+                        <span class="day">เสาร์ - อาทิตย์</span>
+                        <span class="time">09:00 - 21:00</span>
+                    </li>
+                    <li>
+                        <span class="day">วันหยุดนักขัตฤกษ์</span>
+                        <span class="time">09:00 - 18:00</span>
+                    </li>
+                </ul>
+                
+                <div style="margin-top: var(--spacing-md); padding: var(--spacing-md); background-color: var(--pastel-pink); border-radius: var(--radius-sm);">
+                    <p style="margin: 0; font-size: 0.9rem; color: var(--text-gray);">
+                        <i class="fas fa-info-circle"></i> 
+                        <strong>หมายเหตุ:</strong> สำหรับการสั่งทำเค้กพิเศษ กรุณาติดต่อล่วงหน้าอย่างน้อย 2-3 วัน
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer style="background-color: var(--text-gray); color: var(--white); padding: var(--spacing-xl) 0; text-align: center;">
+        <div class="container">
+            <h3 style="color: var(--primary-pink); margin-bottom: var(--spacing-sm);">🍰 Fadia Bakery</h3>
+            <p>เติมความหวานให้ทุกโอกาสพิเศษ</p>
+            <p style="margin-top: var(--spacing-md); font-size: 0.9rem;">
+                📍 123 ถนนสุขุมวิท กรุงเทพฯ 10110 | 📞 02-123-4567 | 📧 info@fadiabakery.com
+            </p>
+        </div>
+    </footer>
+
+    <script>
+        // Form submission
+        document.getElementById('contactForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const formData = new FormData(this);
+            
+            // Simulate form submission
+            setTimeout(() => {
+                alert('ขอบคุณสำหรับข้อความของคุณ! เราจะรีบติดต่อกลับไปนะคะ 💖');
+                this.reset();
+            }, 500);
+        });
+
+        // Form validation
+        document.getElementById('contactForm').addEventListener('submit', function(e) {
+            const name = document.getElementById('name').value.trim();
+            const phone = document.getElementById('phone').value.trim();
+            const email = document.getElementById('email').value.trim();
+            const subject = document.getElementById('subject').value;
+            const message = document.getElementById('message').value.trim();
+            
+            if (!name || !phone || !email || !subject || !message) {
+                e.preventDefault();
+                alert('กรุณากรอกข้อมูลให้ครบถ้วน');
+                return;
+            }
+            
+            if (message.length < 10) {
+                e.preventDefault();
+                alert('กรุณาใส่ข้อความอย่างน้อย 10 ตัวอักษร');
+                return;
+            }
+        });
+    </script>
+</body>
+</html>

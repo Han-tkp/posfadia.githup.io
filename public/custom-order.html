@@ -1,0 +1,593 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>สั่งทำเค้กพิเศษ - Fadia Bakery</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        .step-form {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        .step-content {
+            display: none;
+        }
+        
+        .step-content.active {
+            display: block;
+        }
+        
+        .size-options {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: var(--spacing-md);
+            margin-bottom: var(--spacing-lg);
+        }
+        
+        .size-card {
+            border: 2px solid #e0e0e0;
+            border-radius: var(--radius-md);
+            padding: var(--spacing-md);
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .size-card:hover {
+            border-color: var(--primary-pink);
+            transform: translateY(-2px);
+        }
+        
+        .size-card.selected {
+            border-color: var(--primary-pink);
+            background-color: var(--pastel-pink);
+        }
+        
+        .size-card img {
+            width: 100%;
+            height: 120px;
+            object-fit: cover;
+            border-radius: var(--radius-sm);
+            margin-bottom: var(--spacing-sm);
+        }
+        
+        .flavor-options {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: var(--spacing-sm);
+        }
+        
+        .flavor-option {
+            padding: var(--spacing-sm);
+            border: 2px solid #e0e0e0;
+            border-radius: var(--radius-sm);
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .flavor-option:hover {
+            border-color: var(--primary-pink);
+        }
+        
+        .flavor-option.selected {
+            border-color: var(--primary-pink);
+            background-color: var(--pastel-pink);
+        }
+        
+        .color-palette {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(60px, 1fr));
+            gap: var(--spacing-sm);
+            margin-bottom: var(--spacing-lg);
+        }
+        
+        .color-option {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            cursor: pointer;
+            border: 3px solid transparent;
+            transition: all 0.3s ease;
+        }
+        
+        .color-option:hover {
+            transform: scale(1.1);
+        }
+        
+        .color-option.selected {
+            border-color: var(--text-gray);
+        }
+        
+        .style-options {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: var(--spacing-md);
+        }
+        
+        .style-card {
+            border: 2px solid #e0e0e0;
+            border-radius: var(--radius-md);
+            padding: var(--spacing-md);
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .style-card:hover {
+            border-color: var(--primary-pink);
+            transform: translateY(-2px);
+        }
+        
+        .style-card.selected {
+            border-color: var(--primary-pink);
+            background-color: var(--pastel-pink);
+        }
+        
+        .style-card img {
+            width: 100%;
+            height: 120px;
+            object-fit: cover;
+            border-radius: var(--radius-sm);
+            margin-bottom: var(--spacing-sm);
+        }
+        
+        .form-navigation {
+            display: flex;
+            justify-content: space-between;
+            margin-top: var(--spacing-xl);
+        }
+        
+        .file-upload {
+            border: 2px dashed #e0e0e0;
+            border-radius: var(--radius-md);
+            padding: var(--spacing-lg);
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .file-upload:hover {
+            border-color: var(--primary-pink);
+            background-color: var(--pastel-pink);
+        }
+        
+        .file-upload.dragover {
+            border-color: var(--primary-pink);
+            background-color: var(--pastel-pink);
+        }
+        
+        .success-message {
+            text-align: center;
+            padding: var(--spacing-xl);
+        }
+        
+        .success-message i {
+            font-size: 4rem;
+            color: var(--primary-pink);
+            margin-bottom: var(--spacing-md);
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="container">
+            <div class="nav-container">
+                <a href="/" class="logo">🍰 Fadia Bakery</a>
+                <ul class="nav-menu">
+                    <li><a href="/">หน้าแรก</a></li>
+                    <li><a href="/products">เค้กทั้งหมด</a></li>
+                    <li><a href="/custom-order" class="text-pink">สั่งทำเค้ก</a></li>
+                    <li><a href="/about">เกี่ยวกับเรา</a></li>
+                    <li><a href="/contact">ติดต่อเรา</a></li>
+                    <li><a href="/cart">ตะกร้า</a></li>
+                    <li><a href="/member-login">เข้าสู่ระบบ</a></li>
+                    <li><a href="/member-register">สมัครสมาชิก</a></li>
+                    <li><a href="/feedback">ข้อเสนอแนะ</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Page Header -->
+    <section class="hero">
+        <div class="container">
+            <h1>🎨 สร้างเค้กในฝันของคุณ</h1>
+            <p>ออกแบบเค้กตามใจคุณใน 3 ขั้นตอนง่ายๆ</p>
+        </div>
+    </section>
+
+    <!-- Step Indicator -->
+    <section class="section" style="padding-top: 0;">
+        <div class="container">
+            <div class="step-indicator">
+                <div class="step active" id="step1-indicator">
+                    <div class="step-number">1</div>
+                    <span>เลือกพื้นฐาน</span>
+                </div>
+                <div class="step" id="step2-indicator">
+                    <div class="step-number">2</div>
+                    <span>ออกแบบ</span>
+                </div>
+                <div class="step" id="step3-indicator">
+                    <div class="step-number">3</div>
+                    <span>รายละเอียด</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Custom Order Form -->
+    <section class="section" style="padding-top: 0;">
+        <div class="container">
+            <div class="step-form">
+                <form id="customOrderForm" enctype="multipart/form-data">
+                    <!-- Step 1: Choose Your Base -->
+                    <div class="step-content active" id="step1">
+                        <div class="card">
+                            <h2>🍰 เลือกพื้นฐานเค้ก</h2>
+                            
+                            <div class="form-group">
+                                <label>ขนาดเค้ก:</label>
+                                <div class="size-options">
+                                    <div class="size-card" data-size="1lb" onclick="selectSize(this)">
+                                        <img src="https://images.unsplash.com/photo-1578985545062-69928b1d9587?w=200&h=120&fit=crop" alt="1 ปอนด์">
+                                        <h4>1 ปอนด์</h4>
+                                        <p>สำหรับ 4-6 คน</p>
+                                        <div class="price">฿350</div>
+                                    </div>
+                                    <div class="size-card" data-size="2lb" onclick="selectSize(this)">
+                                        <img src="https://images.unsplash.com/photo-1563729784474-d77dbb933a9e?w=200&h=120&fit=crop" alt="2 ปอนด์">
+                                        <h4>2 ปอนด์</h4>
+                                        <p>สำหรับ 8-12 คน</p>
+                                        <div class="price">฿550</div>
+                                    </div>
+                                    <div class="size-card" data-size="3lb" onclick="selectSize(this)">
+                                        <img src="https://images.unsplash.com/photo-1464349095431-e9a21285b5f3?w=200&h=120&fit=crop" alt="3 ปอนด์">
+                                        <h4>3 ปอนด์</h4>
+                                        <p>สำหรับ 12-16 คน</p>
+                                        <div class="price">฿750</div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label>รสชาติเนื้อเค้ก:</label>
+                                <div class="flavor-options">
+                                    <div class="flavor-option" data-flavor="vanilla" onclick="selectFlavor(this)">
+                                        <i class="fas fa-cookie-bite" style="font-size: 2rem; color: var(--soft-gold); margin-bottom: var(--spacing-xs);"></i>
+                                        <div>วานิลลา</div>
+                                    </div>
+                                    <div class="flavor-option" data-flavor="chocolate" onclick="selectFlavor(this)">
+                                        <i class="fas fa-cookie-bite" style="font-size: 2rem; color: #8B4513; margin-bottom: var(--spacing-xs);"></i>
+                                        <div>ช็อคโกแลต</div>
+                                    </div>
+                                    <div class="flavor-option" data-flavor="strawberry" onclick="selectFlavor(this)">
+                                        <i class="fas fa-cookie-bite" style="font-size: 2rem; color: #FF69B4; margin-bottom: var(--spacing-xs);"></i>
+                                        <div>สตรอว์เบอร์รี่</div>
+                                    </div>
+                                    <div class="flavor-option" data-flavor="red-velvet" onclick="selectFlavor(this)">
+                                        <i class="fas fa-cookie-bite" style="font-size: 2rem; color: #DC143C; margin-bottom: var(--spacing-xs);"></i>
+                                        <div>เรดเวลเวต</div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label>รสชาติครีม:</label>
+                                <div class="flavor-options">
+                                    <div class="flavor-option" data-frosting="vanilla-cream" onclick="selectFrosting(this)">
+                                        <i class="fas fa-ice-cream" style="font-size: 2rem; color: var(--soft-gold); margin-bottom: var(--spacing-xs);"></i>
+                                        <div>ครีมวานิลลา</div>
+                                    </div>
+                                    <div class="flavor-option" data-frosting="chocolate-cream" onclick="selectFrosting(this)">
+                                        <i class="fas fa-ice-cream" style="font-size: 2rem; color: #8B4513; margin-bottom: var(--spacing-xs);"></i>
+                                        <div>ครีมช็อคโกแลต</div>
+                                    </div>
+                                    <div class="flavor-option" data-frosting="cream-cheese" onclick="selectFrosting(this)">
+                                        <i class="fas fa-ice-cream" style="font-size: 2rem; color: #FFE4E1; margin-bottom: var(--spacing-xs);"></i>
+                                        <div>ครีมชีส</div>
+                                    </div>
+                                    <div class="flavor-option" data-frosting="strawberry-cream" onclick="selectFrosting(this)">
+                                        <i class="fas fa-ice-cream" style="font-size: 2rem; color: #FF69B4; margin-bottom: var(--spacing-xs);"></i>
+                                        <div>ครีมสตรอว์เบอร์รี่</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Step 2: Design Your Dream -->
+                    <div class="step-content" id="step2">
+                        <div class="card">
+                            <h2>🎨 ออกแบบความฝัน</h2>
+                            
+                            <div class="form-group">
+                                <label>ธีมสี:</label>
+                                <div class="color-palette">
+                                    <div class="color-option" style="background-color: #E75480;" data-color="pink" onclick="selectColor(this)"></div>
+                                    <div class="color-option" style="background-color: #87CEEB;" data-color="blue" onclick="selectColor(this)"></div>
+                                    <div class="color-option" style="background-color: #98FB98;" data-color="green" onclick="selectColor(this)"></div>
+                                    <div class="color-option" style="background-color: #F0E68C;" data-color="yellow" onclick="selectColor(this)"></div>
+                                    <div class="color-option" style="background-color: #DDA0DD;" data-color="purple" onclick="selectColor(this)"></div>
+                                    <div class="color-option" style="background-color: #FFB6C1;" data-color="light-pink" onclick="selectColor(this)"></div>
+                                    <div class="color-option" style="background-color: #FFE4E1;" data-color="cream" onclick="selectColor(this)"></div>
+                                    <div class="color-option" style="background-color: #F5F5DC;" data-color="beige" onclick="selectColor(this)"></div>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label>สไตล์การตกแต่ง:</label>
+                                <div class="style-options">
+                                    <div class="style-card" data-style="minimal" onclick="selectStyle(this)">
+                                        <img src="https://images.unsplash.com/photo-1578985545062-69928b1d9587?w=200&h=120&fit=crop" alt="มินิมอล">
+                                        <h4>มินิมอล</h4>
+                                        <p>เรียบง่าย สะอาดตา</p>
+                                    </div>
+                                    <div class="style-card" data-style="floral" onclick="selectStyle(this)">
+                                        <img src="https://images.unsplash.com/photo-1563729784474-d77dbb933a9e?w=200&h=120&fit=crop" alt="ดอกไม้">
+                                        <h4>ดอกไม้</h4>
+                                        <p>สวยงามด้วยดอกไม้สด</p>
+                                    </div>
+                                    <div class="style-card" data-style="cartoon" onclick="selectStyle(this)">
+                                        <img src="https://images.unsplash.com/photo-1464349095431-e9a21285b5f3?w=200&h=120&fit=crop" alt="การ์ตูน">
+                                        <h4>การ์ตูน</h4>
+                                        <p>น่ารักด้วยตัวการ์ตูน</p>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label>ข้อความบนเค้ก:</label>
+                                <input type="text" class="form-control" id="cakeMessage" placeholder="เช่น Happy Birthday, Congratulations">
+                                <small style="color: var(--text-gray);">ตัวอย่างฟอนต์: Arial, Comic Sans, Script</small>
+                            </div>
+
+                            <div class="form-group">
+                                <label>อัปโหลดรูปภาพอ้างอิง (ไม่บังคับ):</label>
+                                <div class="file-upload" onclick="document.getElementById('referenceImage').click()">
+                                    <i class="fas fa-cloud-upload-alt" style="font-size: 2rem; color: var(--primary-pink); margin-bottom: var(--spacing-sm);"></i>
+                                    <p>คลิกเพื่ออัปโหลดรูปภาพ</p>
+                                    <p style="font-size: 0.9rem; color: var(--text-gray);">หรือลากไฟล์มาวางที่นี่</p>
+                                </div>
+                                <input type="file" id="referenceImage" name="referenceImage" accept="image/*" style="display: none;">
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Step 3: Final Details -->
+                    <div class="step-content" id="step3">
+                        <div class="card">
+                            <h2>📋 รายละเอียดสุดท้าย</h2>
+                            
+                            <div class="form-group">
+                                <label>วันที่ต้องการรับ:</label>
+                                <input type="date" class="form-control" id="pickupDate" name="pickupDate" required>
+                            </div>
+
+                            <div class="form-group">
+                                <label>ชื่อ-นามสกุล:</label>
+                                <input type="text" class="form-control" id="customerName" name="customerName" required>
+                            </div>
+
+                            <div class="form-group">
+                                <label>เบอร์โทรศัพท์:</label>
+                                <input type="tel" class="form-control" id="phoneNumber" name="phoneNumber" required>
+                            </div>
+
+                            <div class="form-group">
+                                <label>อีเมล (ไม่บังคับ):</label>
+                                <input type="email" class="form-control" id="email" name="email">
+                            </div>
+
+                            <div class="form-group">
+                                <label>คำขอพิเศษ:</label>
+                                <textarea class="form-control" id="specialRequests" name="specialRequests" rows="4" placeholder="เช่น แพ้อาหาร, ขอเทียน, รายละเอียดเพิ่มเติม"></textarea>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Success Message -->
+                    <div class="step-content" id="success">
+                        <div class="success-message">
+                            <i class="fas fa-heart"></i>
+                            <h2>ขอบคุณมากค่ะ! 💖</h2>
+                            <p>ทีมงานได้รับข้อมูลแล้ว และจะรีบติดต่อกลับเพื่อยืนยันรายละเอียดนะคะ!</p>
+                            <p>หมายเลขออเดอร์: <strong id="orderId"></strong></p>
+                            <a href="/" class="btn btn-primary btn-large" style="margin-top: var(--spacing-lg);">
+                                กลับไปหน้าแรก
+                            </a>
+                        </div>
+                    </div>
+
+                    <!-- Navigation Buttons -->
+                    <div class="form-navigation" id="formNavigation">
+                        <button type="button" class="btn btn-secondary" id="prevBtn" onclick="changeStep(-1)" style="display: none;">
+                            <i class="fas fa-arrow-left"></i> ย้อนกลับ
+                        </button>
+                        <button type="button" class="btn btn-primary" id="nextBtn" onclick="changeStep(1)">
+                            ถัดไป <i class="fas fa-arrow-right"></i>
+                        </button>
+                        <button type="submit" class="btn btn-primary btn-large" id="submitBtn" style="display: none;">
+                            💖 ส่งคำขอออกแบบเค้ก
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer style="background-color: var(--text-gray); color: var(--white); padding: var(--spacing-xl) 0; text-align: center;">
+        <div class="container">
+            <h3 style="color: var(--primary-pink); margin-bottom: var(--spacing-sm);">🍰 Fadia Bakery</h3>
+            <p>เติมความหวานให้ทุกโอกาสพิเศษ</p>
+            <p style="margin-top: var(--spacing-md); font-size: 0.9rem;">
+                📍 123 ถนนสุขุมวิท กรุงเทพฯ 10110 | 📞 02-123-4567 | 📧 info@fadiabakery.com
+            </p>
+        </div>
+    </footer>
+
+    <script>
+        let currentStep = 1;
+        const totalSteps = 3;
+
+        function changeStep(direction) {
+            const currentStepElement = document.getElementById(`step${currentStep}`);
+            const currentIndicator = document.getElementById(`step${currentStep}-indicator`);
+            
+            // Hide current step
+            currentStepElement.classList.remove('active');
+            currentIndicator.classList.remove('active');
+            
+            // Update step
+            currentStep += direction;
+            
+            // Show new step
+            const newStepElement = document.getElementById(`step${currentStep}`);
+            const newIndicator = document.getElementById(`step${currentStep}-indicator`);
+            
+            if (newStepElement) {
+                newStepElement.classList.add('active');
+                newIndicator.classList.add('active');
+            }
+            
+            // Update navigation buttons
+            updateNavigationButtons();
+        }
+
+        function updateNavigationButtons() {
+            const prevBtn = document.getElementById('prevBtn');
+            const nextBtn = document.getElementById('nextBtn');
+            const submitBtn = document.getElementById('submitBtn');
+            
+            // Show/hide previous button
+            prevBtn.style.display = currentStep > 1 ? 'block' : 'none';
+            
+            // Show/hide next/submit button
+            if (currentStep < totalSteps) {
+                nextBtn.style.display = 'block';
+                submitBtn.style.display = 'none';
+            } else {
+                nextBtn.style.display = 'none';
+                submitBtn.style.display = 'block';
+            }
+        }
+
+        function selectSize(element) {
+            document.querySelectorAll('.size-card').forEach(card => card.classList.remove('selected'));
+            element.classList.add('selected');
+        }
+
+        function selectFlavor(element) {
+            document.querySelectorAll('.flavor-option').forEach(option => option.classList.remove('selected'));
+            element.classList.add('selected');
+        }
+
+        function selectFrosting(element) {
+            document.querySelectorAll('.flavor-option').forEach(option => option.classList.remove('selected'));
+            element.classList.add('selected');
+        }
+
+        function selectColor(element) {
+            document.querySelectorAll('.color-option').forEach(option => option.classList.remove('selected'));
+            element.classList.add('selected');
+        }
+
+        function selectStyle(element) {
+            document.querySelectorAll('.style-card').forEach(card => card.classList.remove('selected'));
+            element.classList.add('selected');
+        }
+
+        // File upload handling
+        document.getElementById('referenceImage').addEventListener('change', function(e) {
+            const file = e.target.files[0];
+            if (file) {
+                const uploadArea = document.querySelector('.file-upload');
+                uploadArea.innerHTML = `
+                    <i class="fas fa-check-circle" style="font-size: 2rem; color: var(--primary-pink); margin-bottom: var(--spacing-sm);"></i>
+                    <p>อัปโหลดไฟล์แล้ว: ${file.name}</p>
+                    <p style="font-size: 0.9rem; color: var(--text-gray);">คลิกเพื่อเปลี่ยนไฟล์</p>
+                `;
+            }
+        });
+
+        // Drag and drop handling
+        const uploadArea = document.querySelector('.file-upload');
+        uploadArea.addEventListener('dragover', function(e) {
+            e.preventDefault();
+            uploadArea.classList.add('dragover');
+        });
+
+        uploadArea.addEventListener('dragleave', function(e) {
+            e.preventDefault();
+            uploadArea.classList.remove('dragover');
+        });
+
+        uploadArea.addEventListener('drop', function(e) {
+            e.preventDefault();
+            uploadArea.classList.remove('dragover');
+            const files = e.dataTransfer.files;
+            if (files.length > 0) {
+                document.getElementById('referenceImage').files = files;
+                const file = files[0];
+                uploadArea.innerHTML = `
+                    <i class="fas fa-check-circle" style="font-size: 2rem; color: var(--primary-pink); margin-bottom: var(--spacing-sm);"></i>
+                    <p>อัปโหลดไฟล์แล้ว: ${file.name}</p>
+                    <p style="font-size: 0.9rem; color: var(--text-gray);">คลิกเพื่อเปลี่ยนไฟล์</p>
+                `;
+            }
+        });
+
+        // Form submission
+        document.getElementById('customOrderForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const formData = new FormData(this);
+            
+            // Add selected options
+            const selectedSize = document.querySelector('.size-card.selected');
+            if (selectedSize) formData.append('size', selectedSize.dataset.size);
+            
+            const selectedFlavor = document.querySelector('.flavor-option.selected');
+            if (selectedFlavor) formData.append('flavor', selectedFlavor.dataset.flavor);
+            
+            const selectedColor = document.querySelector('.color-option.selected');
+            if (selectedColor) formData.append('color', selectedColor.dataset.color);
+            
+            const selectedStyle = document.querySelector('.style-card.selected');
+            if (selectedStyle) formData.append('style', selectedStyle.dataset.style);
+            
+            fetch('/api/custom-order', {
+                method: 'POST',
+                body: formData
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (data.success) {
+                    // Show success message
+                    document.getElementById('step3').classList.remove('active');
+                    document.getElementById('success').classList.add('active');
+                    document.getElementById('orderId').textContent = data.orderId;
+                    document.getElementById('formNavigation').style.display = 'none';
+                }
+            })
+            .catch(error => {
+                console.error('Error:', error);
+                alert('เกิดข้อผิดพลาด กรุณาลองใหม่อีกครั้ง');
+            });
+        });
+
+        // Set minimum date to tomorrow
+        document.addEventListener('DOMContentLoaded', function() {
+            const tomorrow = new Date();
+            tomorrow.setDate(tomorrow.getDate() + 1);
+            document.getElementById('pickupDate').min = tomorrow.toISOString().split('T')[0];
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,297 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ข้อเสนอแนะ - Fadia Bakery</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        .feedback-form {
+            max-width: 600px;
+            margin: 0 auto;
+        }
+        
+        .file-upload {
+            border: 2px dashed #e0e0e0;
+            border-radius: var(--radius-md);
+            padding: var(--spacing-lg);
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            margin-top: var(--spacing-sm);
+        }
+        
+        .file-upload:hover {
+            border-color: var(--primary-pink);
+            background-color: var(--pastel-pink);
+        }
+        
+        .file-upload.dragover {
+            border-color: var(--primary-pink);
+            background-color: var(--pastel-pink);
+        }
+        
+        .success-message {
+            text-align: center;
+            padding: var(--spacing-xl);
+        }
+        
+        .success-message i {
+            font-size: 4rem;
+            color: var(--primary-pink);
+            margin-bottom: var(--spacing-md);
+        }
+        
+        .feedback-intro {
+            text-align: center;
+            margin-bottom: var(--spacing-xl);
+            padding: var(--spacing-lg);
+            background-color: var(--pastel-pink);
+            border-radius: var(--radius-lg);
+        }
+        
+        .feedback-intro h2 {
+            color: var(--primary-pink);
+            margin-bottom: var(--spacing-sm);
+        }
+        
+        .feedback-intro p {
+            font-size: 1.1rem;
+            margin-bottom: 0;
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="container">
+            <div class="nav-container">
+                <a href="/" class="logo">🍰 Fadia Bakery</a>
+                <ul class="nav-menu">
+                    <li><a href="/">หน้าแรก</a></li>
+                    <li><a href="/products">เค้กทั้งหมด</a></li>
+                    <li><a href="/custom-order">สั่งทำเค้ก</a></li>
+                    <li><a href="/about">เกี่ยวกับเรา</a></li>
+                    <li><a href="/contact">ติดต่อเรา</a></li>
+                    <li><a href="/cart">ตะกร้า</a></li>
+                    <li><a href="/member-login">เข้าสู่ระบบ</a></li>
+                    <li><a href="/member-register">สมัครสมาชิก</a></li>
+                    <li><a href="/feedback" class="text-pink">ข้อเสนอแนะ</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Page Header -->
+    <section class="hero">
+        <div class="container">
+            <h1>💌 เสียงของคุณมีความหมายกับเรา</h1>
+            <p>Fadia Bakery อยากเติบโตไปพร้อมกับคุณ!</p>
+        </div>
+    </section>
+
+    <!-- Feedback Form -->
+    <section class="section">
+        <div class="container">
+            <div class="feedback-intro">
+                <h2>💌 เสียงของคุณมีความหมายกับเรา</h2>
+                <p>Fadia Bakery อยากเติบโตไปพร้อมกับคุณ! มีเค้กแบบไหนที่อยากให้เราทำเพิ่ม หรือมีบริการอะไรที่อยากให้เราปรับปรุง บอกเราได้เลย</p>
+            </div>
+
+            <div class="feedback-form">
+                <form id="feedbackForm" enctype="multipart/form-data">
+                    <div class="card">
+                        <div class="form-group">
+                            <label>ประเภทข้อเสนอแนะ:</label>
+                            <select class="form-control" id="feedbackType" name="feedbackType" required>
+                                <option value="">เลือกประเภทข้อเสนอแนะ</option>
+                                <option value="new-product">สินค้าใหม่ที่ต้องการ</option>
+                                <option value="service-improvement">บริการที่อยากให้เพิ่ม</option>
+                                <option value="quality-improvement">คุณภาพที่อยากให้ปรับปรุง</option>
+                                <option value="price-suggestion">ข้อเสนอแนะเรื่องราคา</option>
+                                <option value="delivery-service">บริการจัดส่ง</option>
+                                <option value="customer-service">การบริการลูกค้า</option>
+                                <option value="other">ข้อเสนอแนะอื่นๆ</option>
+                            </select>
+                        </div>
+
+                        <div class="form-group">
+                            <label>หัวข้อ:</label>
+                            <input type="text" class="form-control" id="subject" name="subject" placeholder="เช่น อยากให้มีเค้กมังสวิรัติ" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label>รายละเอียด:</label>
+                            <textarea class="form-control" id="details" name="details" rows="6" placeholder="บอกเราในรายละเอียดว่าคุณต้องการอะไร หรือมีข้อเสนอแนะอะไรบ้าง..." required></textarea>
+                        </div>
+
+                        <div class="form-group">
+                            <label>ข้อมูลติดต่อ (ไม่บังคับ):</label>
+                            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: var(--spacing-sm);">
+                                <input type="text" class="form-control" id="contactName" name="contactName" placeholder="ชื่อ-นามสกุล">
+                                <input type="tel" class="form-control" id="contactPhone" name="contactPhone" placeholder="เบอร์โทรศัพท์">
+                            </div>
+                            <small style="color: var(--text-gray);">หากต้องการให้เราติดต่อกลับเพื่อพูดคุยเพิ่มเติม</small>
+                        </div>
+
+                        <div class="form-group">
+                            <label>แนบไฟล์ (ไม่บังคับ):</label>
+                            <div class="file-upload" onclick="document.getElementById('attachment').click()">
+                                <i class="fas fa-paperclip" style="font-size: 2rem; color: var(--primary-pink); margin-bottom: var(--spacing-sm);"></i>
+                                <p>คลิกเพื่อแนบไฟล์</p>
+                                <p style="font-size: 0.9rem; color: var(--text-gray);">รูปภาพ, PDF หรือไฟล์อื่นๆ</p>
+                            </div>
+                            <input type="file" id="attachment" name="attachment" accept="image/*,.pdf,.doc,.docx" style="display: none;">
+                        </div>
+
+                        <div class="text-center" style="margin-top: var(--spacing-lg);">
+                            <button type="submit" class="btn btn-primary btn-large">
+                                <i class="fas fa-paper-plane"></i> ส่งข้อความถึงเรา
+                            </button>
+                        </div>
+                    </div>
+                </form>
+
+                <!-- Success Message -->
+                <div class="card success-message" id="successMessage" style="display: none;">
+                    <i class="fas fa-heart"></i>
+                    <h2>ขอบคุณมากค่ะ! 💖</h2>
+                    <p>ขอบคุณสำหรับข้อเสนอแนะของคุณ! เราจะนำไปปรับปรุงบริการให้ดีขึ้นค่ะ</p>
+                    <p>หากคุณให้ข้อมูลติดต่อไว้ เราจะรีบติดต่อกลับไปนะคะ</p>
+                    <a href="/" class="btn btn-primary btn-large" style="margin-top: var(--spacing-lg);">
+                        กลับไปหน้าแรก
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Additional Information -->
+    <section class="section bg-pink">
+        <div class="container">
+            <div class="text-center">
+                <h2>🎯 ข้อเสนอแนะที่เราต้องการ</h2>
+                <div class="grid grid-2" style="margin-top: var(--spacing-lg);">
+                    <div class="card text-center">
+                        <i class="fas fa-birthday-cake" style="font-size: 3rem; color: var(--primary-pink); margin-bottom: var(--spacing-sm);"></i>
+                        <h3>สินค้าใหม่</h3>
+                        <p>มีเค้กรสชาติไหนที่อยากให้เราทำเพิ่ม? หรือมีขนมแบบไหนที่อยากลอง?</p>
+                    </div>
+                    <div class="card text-center">
+                        <i class="fas fa-truck" style="font-size: 3rem; color: var(--primary-pink); margin-bottom: var(--spacing-sm);"></i>
+                        <h3>บริการ</h3>
+                        <p>อยากให้เรามีบริการอะไรเพิ่มเติม? เช่น จัดส่งด่วน, บริการจัดงาน</p>
+                    </div>
+                    <div class="card text-center">
+                        <i class="fas fa-star" style="font-size: 3rem; color: var(--primary-pink); margin-bottom: var(--spacing-sm);"></i>
+                        <h3>คุณภาพ</h3>
+                        <p>มีอะไรที่อยากให้เราปรับปรุงในเรื่องคุณภาพหรือรสชาติ?</p>
+                    </div>
+                    <div class="card text-center">
+                        <i class="fas fa-comments" style="font-size: 3rem; color: var(--primary-pink); margin-bottom: var(--spacing-sm);"></i>
+                        <h3>การบริการ</h3>
+                        <p>การบริการของเรามีอะไรที่อยากให้ปรับปรุงหรือเพิ่มเติม?</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer style="background-color: var(--text-gray); color: var(--white); padding: var(--spacing-xl) 0; text-align: center;">
+        <div class="container">
+            <h3 style="color: var(--primary-pink); margin-bottom: var(--spacing-sm);">🍰 Fadia Bakery</h3>
+            <p>เติมความหวานให้ทุกโอกาสพิเศษ</p>
+            <p style="margin-top: var(--spacing-md); font-size: 0.9rem;">
+                📍 123 ถนนสุขุมวิท กรุงเทพฯ 10110 | 📞 02-123-4567 | 📧 info@fadiabakery.com
+            </p>
+        </div>
+    </footer>
+
+    <script>
+        // File upload handling
+        document.getElementById('attachment').addEventListener('change', function(e) {
+            const file = e.target.files[0];
+            if (file) {
+                const uploadArea = document.querySelector('.file-upload');
+                uploadArea.innerHTML = `
+                    <i class="fas fa-check-circle" style="font-size: 2rem; color: var(--primary-pink); margin-bottom: var(--spacing-sm);"></i>
+                    <p>แนบไฟล์แล้ว: ${file.name}</p>
+                    <p style="font-size: 0.9rem; color: var(--text-gray);">คลิกเพื่อเปลี่ยนไฟล์</p>
+                `;
+            }
+        });
+
+        // Drag and drop handling
+        const uploadArea = document.querySelector('.file-upload');
+        uploadArea.addEventListener('dragover', function(e) {
+            e.preventDefault();
+            uploadArea.classList.add('dragover');
+        });
+
+        uploadArea.addEventListener('dragleave', function(e) {
+            e.preventDefault();
+            uploadArea.classList.remove('dragover');
+        });
+
+        uploadArea.addEventListener('drop', function(e) {
+            e.preventDefault();
+            uploadArea.classList.remove('dragover');
+            const files = e.dataTransfer.files;
+            if (files.length > 0) {
+                document.getElementById('attachment').files = files;
+                const file = files[0];
+                uploadArea.innerHTML = `
+                    <i class="fas fa-check-circle" style="font-size: 2rem; color: var(--primary-pink); margin-bottom: var(--spacing-sm);"></i>
+                    <p>แนบไฟล์แล้ว: ${file.name}</p>
+                    <p style="font-size: 0.9rem; color: var(--text-gray);">คลิกเพื่อเปลี่ยนไฟล์</p>
+                `;
+            }
+        });
+
+        // Form submission
+        document.getElementById('feedbackForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const formData = new FormData(this);
+            
+            fetch('/api/feedback', {
+                method: 'POST',
+                body: formData
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (data.success) {
+                    // Hide form and show success message
+                    document.getElementById('feedbackForm').style.display = 'none';
+                    document.getElementById('successMessage').style.display = 'block';
+                }
+            })
+            .catch(error => {
+                console.error('Error:', error);
+                alert('เกิดข้อผิดพลาด กรุณาลองใหม่อีกครั้ง');
+            });
+        });
+
+        // Form validation
+        document.getElementById('feedbackForm').addEventListener('submit', function(e) {
+            const feedbackType = document.getElementById('feedbackType').value;
+            const subject = document.getElementById('subject').value.trim();
+            const details = document.getElementById('details').value.trim();
+            
+            if (!feedbackType || !subject || !details) {
+                e.preventDefault();
+                alert('กรุณากรอกข้อมูลให้ครบถ้วน');
+                return;
+            }
+            
+            if (details.length < 10) {
+                e.preventDefault();
+                alert('กรุณาใส่รายละเอียดอย่างน้อย 10 ตัวอักษร');
+                return;
+            }
+        });
+    </script>
+</body>
+</html>

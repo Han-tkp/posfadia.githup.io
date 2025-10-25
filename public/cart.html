@@ -1,0 +1,489 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ตะกร้าสินค้า - Fadia Bakery</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        .cart-hero {
+            background: linear-gradient(135deg, var(--pastel-pink) 0%, var(--light-cream) 100%);
+            padding: var(--spacing-xl) 0;
+            text-align: center;
+        }
+        
+        .cart-hero h1 {
+            font-size: 3rem;
+            color: var(--primary-pink);
+            margin-bottom: var(--spacing-md);
+        }
+        
+        .cart-content {
+            display: grid;
+            grid-template-columns: 2fr 1fr;
+            gap: var(--spacing-xl);
+            margin-top: var(--spacing-xl);
+        }
+        
+        .cart-items {
+            background-color: var(--white);
+            border-radius: var(--radius-lg);
+            padding: var(--spacing-lg);
+            box-shadow: 0 4px 20px var(--shadow);
+        }
+        
+        .cart-item {
+            display: grid;
+            grid-template-columns: 100px 1fr auto auto auto;
+            gap: var(--spacing-md);
+            align-items: center;
+            padding: var(--spacing-md);
+            border-bottom: 1px solid #e0e0e0;
+            transition: background-color 0.3s ease;
+        }
+        
+        .cart-item:hover {
+            background-color: var(--pastel-pink);
+        }
+        
+        .cart-item:last-child {
+            border-bottom: none;
+        }
+        
+        .cart-item img {
+            width: 80px;
+            height: 80px;
+            object-fit: cover;
+            border-radius: var(--radius-sm);
+        }
+        
+        .item-info h3 {
+            color: var(--primary-pink);
+            margin-bottom: var(--spacing-xs);
+        }
+        
+        .item-info p {
+            color: var(--text-gray);
+            font-size: 0.9rem;
+            margin: 0;
+        }
+        
+        .quantity-controls {
+            display: flex;
+            align-items: center;
+            gap: var(--spacing-sm);
+        }
+        
+        .quantity-btn {
+            width: 30px;
+            height: 30px;
+            border: 1px solid var(--primary-pink);
+            background-color: transparent;
+            color: var(--primary-pink);
+            border-radius: 50%;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+        }
+        
+        .quantity-btn:hover {
+            background-color: var(--primary-pink);
+            color: var(--white);
+        }
+        
+        .quantity-input {
+            width: 50px;
+            text-align: center;
+            border: 1px solid #e0e0e0;
+            border-radius: var(--radius-sm);
+            padding: var(--spacing-xs);
+        }
+        
+        .item-price {
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: var(--soft-gold);
+        }
+        
+        .remove-btn {
+            background-color: transparent;
+            border: none;
+            color: #ff6b6b;
+            cursor: pointer;
+            padding: var(--spacing-xs);
+            border-radius: var(--radius-sm);
+            transition: all 0.3s ease;
+        }
+        
+        .remove-btn:hover {
+            background-color: #ff6b6b;
+            color: var(--white);
+        }
+        
+        .cart-summary {
+            background-color: var(--white);
+            border-radius: var(--radius-lg);
+            padding: var(--spacing-lg);
+            box-shadow: 0 4px 20px var(--shadow);
+            height: fit-content;
+            position: sticky;
+            top: 100px;
+        }
+        
+        .summary-row {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: var(--spacing-sm);
+        }
+        
+        .summary-row.total {
+            border-top: 2px solid var(--primary-pink);
+            padding-top: var(--spacing-sm);
+            font-size: 1.2rem;
+            font-weight: 600;
+            color: var(--primary-pink);
+        }
+        
+        .checkout-btn {
+            width: 100%;
+            margin-top: var(--spacing-lg);
+        }
+        
+        .empty-cart {
+            text-align: center;
+            padding: var(--spacing-xl);
+            background-color: var(--white);
+            border-radius: var(--radius-lg);
+            box-shadow: 0 4px 20px var(--shadow);
+        }
+        
+        .empty-cart i {
+            font-size: 4rem;
+            color: var(--primary-pink);
+            margin-bottom: var(--spacing-md);
+        }
+        
+        .empty-cart h2 {
+            color: var(--primary-pink);
+            margin-bottom: var(--spacing-md);
+        }
+        
+        .continue-shopping {
+            margin-top: var(--spacing-lg);
+        }
+        
+        .cart-actions {
+            display: flex;
+            gap: var(--spacing-md);
+            margin-top: var(--spacing-lg);
+        }
+        
+        @media (max-width: 768px) {
+            .cart-content {
+                grid-template-columns: 1fr;
+            }
+            
+            .cart-item {
+                grid-template-columns: 80px 1fr;
+                gap: var(--spacing-sm);
+            }
+            
+            .cart-item .quantity-controls,
+            .cart-item .item-price,
+            .cart-item .remove-btn {
+                grid-column: 2;
+                margin-top: var(--spacing-sm);
+            }
+            
+            .cart-hero h1 {
+                font-size: 2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="container">
+            <div class="nav-container">
+                <a href="/" class="logo">🍰 Fadia Bakery</a>
+                <ul class="nav-menu">
+                    <li><a href="/">หน้าแรก</a></li>
+                    <li><a href="/products">เค้กทั้งหมด</a></li>
+                    <li><a href="/custom-order">สั่งทำเค้ก</a></li>
+                    <li><a href="/about">เกี่ยวกับเรา</a></li>
+                    <li><a href="/contact">ติดต่อเรา</a></li>
+                    <li><a href="/cart" class="text-pink">ตะกร้า</a></li>
+                    <li><a href="/member-login">เข้าสู่ระบบ</a></li>
+                    <li><a href="/member-register">สมัครสมาชิก</a></li>
+                    <li><a href="/feedback">ข้อเสนอแนะ</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Cart Hero -->
+    <section class="cart-hero">
+        <div class="container">
+            <h1>🛒 ตะกร้าสินค้า</h1>
+            <p>ตรวจสอบสินค้าและดำเนินการสั่งซื้อ</p>
+        </div>
+    </section>
+
+    <!-- Cart Content -->
+    <section class="section">
+        <div class="container">
+            <div id="cartContent">
+                <!-- Cart Items -->
+                <div class="cart-content">
+                    <div class="cart-items">
+                        <h2>🍰 สินค้าในตะกร้า</h2>
+                        
+                        <div class="cart-item" data-id="chocolate-cake">
+                            <img src="https://images.unsplash.com/photo-1578985545062-69928b1d9587?w=100&h=100&fit=crop" alt="เค้กช็อคโกแลต">
+                            <div class="item-info">
+                                <h3>เค้กช็อคโกแลตคลาสสิก</h3>
+                                <p>เค้กช็อคโกแลตเข้มข้น พร้อมครีมช็อคโกแลตและผลเบอร์รี่สด</p>
+                            </div>
+                            <div class="quantity-controls">
+                                <button class="quantity-btn" onclick="updateQuantity('chocolate-cake', -1)">-</button>
+                                <input type="number" class="quantity-input" value="1" min="1" max="10" onchange="updateQuantity('chocolate-cake', 0)">
+                                <button class="quantity-btn" onclick="updateQuantity('chocolate-cake', 1)">+</button>
+                            </div>
+                            <div class="item-price">฿450</div>
+                            <button class="remove-btn" onclick="removeItem('chocolate-cake')">
+                                <i class="fas fa-trash"></i>
+                            </button>
+                        </div>
+                        
+                        <div class="cart-item" data-id="strawberry-cake">
+                            <img src="https://images.unsplash.com/photo-1563729784474-d77dbb933a9e?w=100&h=100&fit=crop" alt="เค้กสตรอว์เบอร์รี่">
+                            <div class="item-info">
+                                <h3>เค้กสตรอว์เบอร์รี่สด</h3>
+                                <p>เค้กวนิลาเบาๆ พร้อมสตรอว์เบอร์รี่สดและครีมสด</p>
+                            </div>
+                            <div class="quantity-controls">
+                                <button class="quantity-btn" onclick="updateQuantity('strawberry-cake', -1)">-</button>
+                                <input type="number" class="quantity-input" value="2" min="1" max="10" onchange="updateQuantity('strawberry-cake', 0)">
+                                <button class="quantity-btn" onclick="updateQuantity('strawberry-cake', 1)">+</button>
+                            </div>
+                            <div class="item-price">฿760</div>
+                            <button class="remove-btn" onclick="removeItem('strawberry-cake')">
+                                <i class="fas fa-trash"></i>
+                            </button>
+                        </div>
+                        
+                        <div class="cart-item" data-id="vanilla-cupcake">
+                            <img src="https://images.unsplash.com/photo-1576618148400-f54bed99fcfd?w=100&h=100&fit=crop" alt="คัพเค้กวานิลลา">
+                            <div class="item-info">
+                                <h3>คัพเค้กวานิลลา</h3>
+                                <p>คัพเค้กเนื้อนุ่ม รสวานิลลา พร้อมครีมสด</p>
+                            </div>
+                            <div class="quantity-controls">
+                                <button class="quantity-btn" onclick="updateQuantity('vanilla-cupcake', -1)">-</button>
+                                <input type="number" class="quantity-input" value="6" min="1" max="10" onchange="updateQuantity('vanilla-cupcake', 0)">
+                                <button class="quantity-btn" onclick="updateQuantity('vanilla-cupcake', 1)">+</button>
+                            </div>
+                            <div class="item-price">฿270</div>
+                            <button class="remove-btn" onclick="removeItem('vanilla-cupcake')">
+                                <i class="fas fa-trash"></i>
+                            </button>
+                        </div>
+                        
+                        <div class="cart-actions">
+                            <button class="btn btn-secondary" onclick="clearCart()">
+                                <i class="fas fa-trash-alt"></i> ล้างตะกร้า
+                            </button>
+                            <a href="/products" class="btn btn-secondary">
+                                <i class="fas fa-plus"></i> เพิ่มสินค้า
+                            </a>
+                        </div>
+                    </div>
+
+                    <!-- Cart Summary -->
+                    <div class="cart-summary">
+                        <h2>📋 สรุปคำสั่งซื้อ</h2>
+                        
+                        <div class="summary-row">
+                            <span>ยอดรวมสินค้า:</span>
+                            <span id="subtotal">฿1,480</span>
+                        </div>
+                        
+                        <div class="summary-row">
+                            <span>ค่าจัดส่ง:</span>
+                            <span id="shipping">฿50</span>
+                        </div>
+                        
+                        <div class="summary-row">
+                            <span>ส่วนลด:</span>
+                            <span id="discount" style="color: #4CAF50;">-฿0</span>
+                        </div>
+                        
+                        <div class="summary-row total">
+                            <span>ยอดรวมทั้งสิ้น:</span>
+                            <span id="total">฿1,530</span>
+                        </div>
+                        
+                        <button class="btn btn-primary btn-large checkout-btn" onclick="checkout()">
+                            <i class="fas fa-credit-card"></i> ดำเนินการสั่งซื้อ
+                        </button>
+                        
+                        <div style="margin-top: var(--spacing-md); padding: var(--spacing-sm); background-color: var(--pastel-pink); border-radius: var(--radius-sm);">
+                            <p style="margin: 0; font-size: 0.9rem; color: var(--text-gray);">
+                                <i class="fas fa-info-circle"></i> 
+                                <strong>หมายเหตุ:</strong> การสั่งซื้อขั้นต่ำ ฿500 ฟรีค่าจัดส่ง
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Empty Cart -->
+            <div id="emptyCart" class="empty-cart" style="display: none;">
+                <i class="fas fa-shopping-cart"></i>
+                <h2>ตะกร้าว่างเปล่า</h2>
+                <p>ยังไม่มีสินค้าในตะกร้าของคุณ</p>
+                <div class="continue-shopping">
+                    <a href="/products" class="btn btn-primary btn-large">
+                        <i class="fas fa-shopping-bag"></i> เลือกซื้อสินค้า
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer style="background-color: var(--text-gray); color: var(--white); padding: var(--spacing-xl) 0; text-align: center;">
+        <div class="container">
+            <h3 style="color: var(--primary-pink); margin-bottom: var(--spacing-sm);">🍰 Fadia Bakery</h3>
+            <p>เติมความหวานให้ทุกโอกาสพิเศษ</p>
+            <p style="margin-top: var(--spacing-md); font-size: 0.9rem;">
+                📍 123 ถนนสุขุมวิท กรุงเทพฯ 10110 | 📞 02-123-4567 | 📧 info@fadiabakery.com
+            </p>
+        </div>
+    </footer>
+
+    <script>
+        // Cart data
+        let cartItems = {
+            'chocolate-cake': { price: 450, quantity: 1 },
+            'strawberry-cake': { price: 380, quantity: 2 },
+            'vanilla-cupcake': { price: 45, quantity: 6 }
+        };
+
+        function updateQuantity(itemId, change) {
+            const item = cartItems[itemId];
+            if (!item) return;
+
+            if (change === 0) {
+                // Direct input change
+                const input = document.querySelector(`[data-id="${itemId}"] .quantity-input`);
+                const newQuantity = parseInt(input.value);
+                if (newQuantity >= 1 && newQuantity <= 10) {
+                    item.quantity = newQuantity;
+                } else {
+                    input.value = item.quantity;
+                    return;
+                }
+            } else {
+                // Button click
+                const newQuantity = item.quantity + change;
+                if (newQuantity >= 1 && newQuantity <= 10) {
+                    item.quantity = newQuantity;
+                } else {
+                    return;
+                }
+            }
+
+            updateCartDisplay();
+        }
+
+        function removeItem(itemId) {
+            if (confirm('คุณต้องการลบสินค้านี้ออกจากตะกร้าหรือไม่?')) {
+                delete cartItems[itemId];
+                updateCartDisplay();
+            }
+        }
+
+        function clearCart() {
+            if (confirm('คุณต้องการล้างตะกร้าทั้งหมดหรือไม่?')) {
+                cartItems = {};
+                updateCartDisplay();
+            }
+        }
+
+        function updateCartDisplay() {
+            const cartContent = document.getElementById('cartContent');
+            const emptyCart = document.getElementById('emptyCart');
+            
+            if (Object.keys(cartItems).length === 0) {
+                cartContent.style.display = 'none';
+                emptyCart.style.display = 'block';
+                return;
+            }
+
+            cartContent.style.display = 'block';
+            emptyCart.style.display = 'none';
+
+            // Update quantities and prices
+            Object.keys(cartItems).forEach(itemId => {
+                const item = cartItems[itemId];
+                const cartItem = document.querySelector(`[data-id="${itemId}"]`);
+                if (cartItem) {
+                    cartItem.querySelector('.quantity-input').value = item.quantity;
+                    cartItem.querySelector('.item-price').textContent = `฿${item.price * item.quantity}`;
+                }
+            });
+
+            // Update summary
+            updateSummary();
+        }
+
+        function updateSummary() {
+            let subtotal = 0;
+            Object.values(cartItems).forEach(item => {
+                subtotal += item.price * item.quantity;
+            });
+
+            const shipping = subtotal >= 500 ? 0 : 50;
+            const total = subtotal + shipping;
+
+            document.getElementById('subtotal').textContent = `฿${subtotal}`;
+            document.getElementById('shipping').textContent = `฿${shipping}`;
+            document.getElementById('total').textContent = `฿${total}`;
+
+            // Update shipping note
+            const shippingNote = document.querySelector('.cart-summary p');
+            if (subtotal >= 500) {
+                shippingNote.innerHTML = '<i class="fas fa-check-circle"></i> <strong>ยอดสั่งซื้อครบ ฿500</strong> ฟรีค่าจัดส่ง!';
+                shippingNote.style.color = '#4CAF50';
+            } else {
+                shippingNote.innerHTML = '<i class="fas fa-info-circle"></i> <strong>หมายเหตุ:</strong> การสั่งซื้อขั้นต่ำ ฿500 ฟรีค่าจัดส่ง';
+                shippingNote.style.color = 'var(--text-gray)';
+            }
+        }
+
+        function checkout() {
+            if (Object.keys(cartItems).length === 0) {
+                alert('ตะกร้าว่างเปล่า กรุณาเลือกสินค้าก่อน');
+                return;
+            }
+
+            // Simulate checkout process
+            alert('กำลังดำเนินการสั่งซื้อ...\n\nขอบคุณสำหรับการสั่งซื้อ! เราจะรีบจัดส่งให้คุณเร็วที่สุด 🍰💖');
+            
+            // Clear cart after successful checkout
+            cartItems = {};
+            updateCartDisplay();
+        }
+
+        // Initialize cart display
+        document.addEventListener('DOMContentLoaded', function() {
+            updateCartDisplay();
+        });
+    </script>
+</body>
+</html>

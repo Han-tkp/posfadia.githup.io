@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>เกี่ยวกับเรา - Fadia Bakery</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        .about-hero {
+            background: linear-gradient(135deg, var(--pastel-pink) 0%, var(--light-cream) 100%);
+            padding: var(--spacing-xl) 0;
+            text-align: center;
+        }
+        
+        .about-hero h1 {
+            font-size: 3rem;
+            color: var(--primary-pink);
+            margin-bottom: var(--spacing-md);
+        }
+        
+        .about-hero p {
+            font-size: 1.2rem;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+        
+        .story-section {
+            padding: var(--spacing-xl) 0;
+        }
+        
+        .story-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: var(--spacing-xl);
+            align-items: center;
+        }
+        
+        .story-text h2 {
+            color: var(--primary-pink);
+            margin-bottom: var(--spacing-md);
+        }
+        
+        .story-image {
+            text-align: center;
+        }
+        
+        .story-image img {
+            width: 100%;
+            max-width: 400px;
+            border-radius: var(--radius-lg);
+            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.15);
+        }
+        
+        .team-section {
+            background-color: var(--pastel-pink);
+            padding: var(--spacing-xl) 0;
+        }
+        
+        .team-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: var(--spacing-lg);
+            margin-top: var(--spacing-lg);
+        }
+        
+        .team-member {
+            background-color: var(--white);
+            border-radius: var(--radius-lg);
+            padding: var(--spacing-lg);
+            text-align: center;
+            box-shadow: 0 4px 20px var(--shadow);
+            transition: transform 0.3s ease;
+        }
+        
+        .team-member:hover {
+            transform: translateY(-5px);
+        }
+        
+        .team-member img {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            object-fit: cover;
+            margin-bottom: var(--spacing-md);
+            border: 4px solid var(--primary-pink);
+        }
+        
+        .team-member h3 {
+            color: var(--primary-pink);
+            margin-bottom: var(--spacing-xs);
+        }
+        
+        .team-member .role {
+            color: var(--soft-gold);
+            font-weight: 500;
+            margin-bottom: var(--spacing-sm);
+        }
+        
+        .values-section {
+            padding: var(--spacing-xl) 0;
+        }
+        
+        .values-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: var(--spacing-lg);
+            margin-top: var(--spacing-lg);
+        }
+        
+        .value-card {
+            text-align: center;
+            padding: var(--spacing-lg);
+        }
+        
+        .value-card i {
+            font-size: 3rem;
+            color: var(--primary-pink);
+            margin-bottom: var(--spacing-md);
+        }
+        
+        .value-card h3 {
+            color: var(--primary-pink);
+            margin-bottom: var(--spacing-sm);
+        }
+        
+        @media (max-width: 768px) {
+            .story-content {
+                grid-template-columns: 1fr;
+                text-align: center;
+            }
+            
+            .about-hero h1 {
+                font-size: 2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="container">
+            <div class="nav-container">
+                <a href="/" class="logo">🍰 Fadia Bakery</a>
+                <ul class="nav-menu">
+                    <li><a href="/">หน้าแรก</a></li>
+                    <li><a href="/products">เค้กทั้งหมด</a></li>
+                    <li><a href="/custom-order">สั่งทำเค้ก</a></li>
+                    <li><a href="/about" class="text-pink">เกี่ยวกับเรา</a></li>
+                    <li><a href="/contact">ติดต่อเรา</a></li>
+                    <li><a href="/cart">ตะกร้า</a></li>
+                    <li><a href="/member-login">เข้าสู่ระบบ</a></li>
+                    <li><a href="/member-register">สมัครสมาชิก</a></li>
+                    <li><a href="/feedback">ข้อเสนอแนะ</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- About Hero -->
+    <section class="about-hero">
+        <div class="container">
+            <h1>🍰 เกี่ยวกับ Fadia Bakery</h1>
+            <p>เรื่องราวของความรักในการทำเค้ก และความตั้งใจที่จะเติมความหวานให้ทุกโอกาสพิเศษในชีวิตคุณ</p>
+        </div>
+    </section>
+
+    <!-- Our Story -->
+    <section class="story-section">
+        <div class="container">
+            <div class="story-content">
+                <div class="story-text">
+                    <h2>💖 เรื่องราวของเรา</h2>
+                    <p>Fadia Bakery เริ่มต้นจากความรักในการทำเค้กของแม่ฟาเดีย ที่ต้องการสร้างความสุขให้กับครอบครัวและเพื่อนๆ ด้วยเค้กที่ทำด้วยใจ</p>
+                    <p>เมื่อเวลาผ่านไป ความรักนี้ได้ขยายออกไปสู่ชุมชน และกลายเป็นร้านเค้กเล็กๆ ที่เต็มไปด้วยความอบอุ่นและความใส่ใจในทุกชิ้น</p>
+                    <p>วันนี้ Fadia Bakery ยังคงรักษาคุณภาพและความใส่ใจเหมือนเดิม แต่พร้อมที่จะสร้างความประทับใจให้กับลูกค้าทุกคนที่เข้ามาใช้บริการ</p>
+                </div>
+                <div class="story-image">
+                    <img src="https://images.unsplash.com/photo-1556909114-f6e7ad7d3136?w=400&h=400&fit=crop" alt="แม่ฟาเดียทำเค้ก">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Our Team -->
+    <section class="team-section">
+        <div class="container">
+            <div class="section-header">
+                <h2>👥 ทีมงานของเรา</h2>
+                <p>คนที่เต็มไปด้วยความรักและความใส่ใจในการทำเค้ก</p>
+            </div>
+            <div class="team-grid">
+                <div class="team-member">
+                    <img src="https://images.unsplash.com/photo-1494790108755-2616b612b786?w=200&h=200&fit=crop&crop=face" alt="แม่ฟาเดีย">
+                    <h3>แม่ฟาเดีย</h3>
+                    <div class="role">เจ้าของร้าน & เชฟหลัก</div>
+                    <p>ผู้ก่อตั้งร้านที่มีความรักในการทำเค้กมากว่า 15 ปี มีความเชี่ยวชาญในการทำเค้กแบบดั้งเดิมและสมัยใหม่</p>
+                </div>
+                <div class="team-member">
+                    <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=200&h=200&fit=crop&crop=face" alt="คุณสมชาย">
+                    <h3>คุณสมชาย</h3>
+                    <div class="role">เชฟขนมอบ</div>
+                    <p>เชฟผู้เชี่ยวชาญในการทำขนมอบและคัพเค้ก มีความคิดสร้างสรรค์ในการออกแบบขนมใหม่ๆ</p>
+                </div>
+                <div class="team-member">
+                    <img src="https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=200&h=200&fit=crop&crop=face" alt="คุณสมใจ">
+                    <h3>คุณสมใจ</h3>
+                    <div class="role">ผู้จัดการร้าน</div>
+                    <p>ดูแลการบริการลูกค้าและการจัดการร้านด้วยความอบอุ่นและเป็นมิตร ทำให้ลูกค้ารู้สึกเหมือนอยู่บ้าน</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Our Values -->
+    <section class="values-section">
+        <div class="container">
+            <div class="section-header">
+                <h2>🌟 ค่านิยมของเรา</h2>
+                <p>สิ่งที่เรายึดถือและปฏิบัติในทุกวัน</p>
+            </div>
+            <div class="values-grid">
+                <div class="value-card">
+                    <i class="fas fa-heart"></i>
+                    <h3>ทำด้วยใจ</h3>
+                    <p>ทุกเค้กที่เราทำออกมาจากใจที่เต็มไปด้วยความรักและความใส่ใจ</p>
+                </div>
+                <div class="value-card">
+                    <i class="fas fa-leaf"></i>
+                    <h3>คุณภาพดี</h3>
+                    <p>ใช้เฉพาะวัตถุดิบคุณภาพดี ไม่ประนีประนอมเรื่องคุณภาพ</p>
+                </div>
+                <div class="value-card">
+                    <i class="fas fa-users"></i>
+                    <h3>บริการเป็นมิตร</h3>
+                    <p>ให้บริการด้วยความอบอุ่นและเป็นมิตร เหมือนต้อนรับคนในครอบครัว</p>
+                </div>
+                <div class="value-card">
+                    <i class="fas fa-star"></i>
+                    <h3>สร้างสรรค์</h3>
+                    <p>คิดค้นและพัฒนาสูตรใหม่ๆ เพื่อให้ลูกค้าได้ลิ้มรสความแปลกใหม่</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Call to Action -->
+    <section class="section bg-pink">
+        <div class="container text-center">
+            <h2>🎂 พร้อมที่จะสร้างความประทับใจให้คุณแล้ว</h2>
+            <p>มาสร้างความหวานและความสุขร่วมกันกับเรา</p>
+            <div style="margin-top: var(--spacing-lg);">
+                <a href="/custom-order" class="btn btn-primary btn-large">
+                    สั่งทำเค้กในฝันของคุณ
+                </a>
+                <a href="/contact" class="btn btn-secondary btn-large" style="margin-left: var(--spacing-sm);">
+                    ติดต่อเรา
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer style="background-color: var(--text-gray); color: var(--white); padding: var(--spacing-xl) 0; text-align: center;">
+        <div class="container">
+            <h3 style="color: var(--primary-pink); margin-bottom: var(--spacing-sm);">🍰 Fadia Bakery</h3>
+            <p>เติมความหวานให้ทุกโอกาสพิเศษ</p>
+            <p style="margin-top: var(--spacing-md); font-size: 0.9rem;">
+                📍 123 ถนนสุขุมวิท กรุงเทพฯ 10110 | 📞 02-123-4567 | 📧 info@fadiabakery.com
+            </p>
+        </div>
+    </footer>
+
+    <script>
+        // Smooth scrolling for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+    </script>
+</body>
+</html>

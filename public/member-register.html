@@ -1,0 +1,361 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>สมัครสมาชิก - Fadia Bakery</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        .register-hero {
+            background: linear-gradient(135deg, var(--pastel-pink) 0%, var(--light-cream) 100%);
+            padding: var(--spacing-xl) 0;
+            text-align: center;
+        }
+        
+        .register-hero h1 {
+            font-size: 3rem;
+            color: var(--primary-pink);
+            margin-bottom: var(--spacing-md);
+        }
+        
+        .register-hero p {
+            font-size: 1.2rem;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+        
+        .register-form {
+            max-width: 600px;
+            margin: 0 auto;
+        }
+        
+        .form-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: var(--spacing-md);
+        }
+        
+        .benefits-section {
+            background-color: var(--pastel-pink);
+            padding: var(--spacing-xl) 0;
+            margin-top: var(--spacing-xl);
+        }
+        
+        .benefits-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: var(--spacing-lg);
+        }
+        
+        .benefit-card {
+            background-color: var(--white);
+            border-radius: var(--radius-lg);
+            padding: var(--spacing-lg);
+            text-align: center;
+            box-shadow: 0 4px 20px var(--shadow);
+        }
+        
+        .benefit-card i {
+            font-size: 3rem;
+            color: var(--primary-pink);
+            margin-bottom: var(--spacing-md);
+        }
+        
+        .benefit-card h3 {
+            color: var(--primary-pink);
+            margin-bottom: var(--spacing-sm);
+        }
+        
+        .success-message {
+            text-align: center;
+            padding: var(--spacing-xl);
+            background-color: var(--white);
+            border-radius: var(--radius-lg);
+            box-shadow: 0 4px 20px var(--shadow);
+            display: none;
+        }
+        
+        .success-message i {
+            font-size: 4rem;
+            color: var(--primary-pink);
+            margin-bottom: var(--spacing-md);
+        }
+        
+        .login-link {
+            text-align: center;
+            margin-top: var(--spacing-lg);
+            padding: var(--spacing-md);
+            background-color: var(--pastel-pink);
+            border-radius: var(--radius-md);
+        }
+        
+        @media (max-width: 768px) {
+            .form-row {
+                grid-template-columns: 1fr;
+            }
+            
+            .register-hero h1 {
+                font-size: 2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="container">
+            <div class="nav-container">
+                <a href="/" class="logo">🍰 Fadia Bakery</a>
+                <ul class="nav-menu">
+                    <li><a href="/">หน้าแรก</a></li>
+                    <li><a href="/products">เค้กทั้งหมด</a></li>
+                    <li><a href="/custom-order">สั่งทำเค้ก</a></li>
+                    <li><a href="/about">เกี่ยวกับเรา</a></li>
+                    <li><a href="/contact">ติดต่อเรา</a></li>
+                    <li><a href="/cart">ตะกร้า</a></li>
+                    <li><a href="/member-login">เข้าสู่ระบบ</a></li>
+                    <li><a href="/member-register" class="text-pink">สมัครสมาชิก</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Register Hero -->
+    <section class="register-hero">
+        <div class="container">
+            <h1>🌟 สมัครสมาชิก Fadia Bakery</h1>
+            <p>เข้าร่วมเป็นสมาชิกเพื่อรับสิทธิพิเศษและข่าวสารล่าสุดจากเรา</p>
+        </div>
+    </section>
+
+    <!-- Register Form -->
+    <section class="section">
+        <div class="container">
+            <div class="register-form">
+                <div class="card">
+                    <h2>📝 ข้อมูลการสมัครสมาชิก</h2>
+                    <form id="registerForm">
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label>ชื่อ-นามสกุล:</label>
+                                <input type="text" class="form-control" id="name" name="name" required>
+                            </div>
+                            <div class="form-group">
+                                <label>เบอร์โทรศัพท์:</label>
+                                <input type="tel" class="form-control" id="phone" name="phone" required>
+                            </div>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label>อีเมล:</label>
+                            <input type="email" class="form-control" id="email" name="email" required>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label>รหัสผ่าน:</label>
+                            <input type="password" class="form-control" id="password" name="password" required minlength="6">
+                            <small style="color: var(--text-gray);">รหัสผ่านต้องมีอย่างน้อย 6 ตัวอักษร</small>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label>ยืนยันรหัสผ่าน:</label>
+                            <input type="password" class="form-control" id="confirmPassword" name="confirmPassword" required>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label>ที่อยู่:</label>
+                            <textarea class="form-control" id="address" name="address" rows="3" required></textarea>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label>ความสนใจ:</label>
+                            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: var(--spacing-sm);">
+                                <label style="display: flex; align-items: center; cursor: pointer;">
+                                    <input type="checkbox" name="interests" value="notifications" checked style="margin-right: var(--spacing-xs);">
+                                    ข่าวสารและโปรโมชั่น
+                                </label>
+                                <label style="display: flex; align-items: center; cursor: pointer;">
+                                    <input type="checkbox" name="interests" value="workshops" checked style="margin-right: var(--spacing-xs);">
+                                    Workshop สอนทำเค้ก
+                                </label>
+                                <label style="display: flex; align-items: center; cursor: pointer;">
+                                    <input type="checkbox" name="interests" value="recipes" checked style="margin-right: var(--spacing-xs);">
+                                    สูตรทำเค้ก
+                                </label>
+                                <label style="display: flex; align-items: center; cursor: pointer;">
+                                    <input type="checkbox" name="interests" value="events" checked style="margin-right: var(--spacing-xs);">
+                                    กิจกรรมพิเศษ
+                                </label>
+                            </div>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label style="display: flex; align-items: center; cursor: pointer;">
+                                <input type="checkbox" id="agreeTerms" required style="margin-right: var(--spacing-xs);">
+                                ฉันยอมรับ <a href="#" style="color: var(--primary-pink);">ข้อกำหนดและเงื่อนไข</a> การใช้งาน
+                            </label>
+                        </div>
+                        
+                        <div class="text-center">
+                            <button type="submit" class="btn btn-primary btn-large">
+                                <i class="fas fa-user-plus"></i> สมัครสมาชิก
+                            </button>
+                        </div>
+                    </form>
+                    
+                    <!-- Success Message -->
+                    <div class="success-message" id="successMessage">
+                        <i class="fas fa-check-circle"></i>
+                        <h2>ยินดีต้อนรับสู่ครอบครัว Fadia Bakery! 🎉</h2>
+                        <p>การสมัครสมาชิกเสร็จสิ้นแล้ว ขอบคุณที่ไว้วางใจเรา</p>
+                        <p>คุณสามารถเข้าสู่ระบบและเริ่มใช้สิทธิพิเศษต่างๆ ได้เลย</p>
+                        <a href="/member-login" class="btn btn-primary btn-large" style="margin-top: var(--spacing-lg);">
+                            เข้าสู่ระบบ
+                        </a>
+                    </div>
+                </div>
+                
+                <div class="login-link">
+                    <p>มีบัญชีอยู่แล้ว? <a href="/member-login" style="color: var(--primary-pink); font-weight: 500;">เข้าสู่ระบบที่นี่</a></p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Benefits Section -->
+    <section class="benefits-section">
+        <div class="container">
+            <div class="section-header">
+                <h2>🎁 สิทธิพิเศษสำหรับสมาชิก</h2>
+                <p>ประโยชน์ที่คุณจะได้รับเมื่อเป็นสมาชิก Fadia Bakery</p>
+            </div>
+            <div class="benefits-grid">
+                <div class="benefit-card">
+                    <i class="fas fa-gift"></i>
+                    <h3>โปรโมชั่นพิเศษ</h3>
+                    <p>รับส่วนลดและข้อเสนอพิเศษที่เฉพาะสมาชิกเท่านั้น</p>
+                </div>
+                <div class="benefit-card">
+                    <i class="fas fa-video"></i>
+                    <h3>คลิปสอนทำเค้ก</h3>
+                    <p>เข้าถึงคลิปสอนทำเค้กและสูตรลับเฉพาะสมาชิก</p>
+                </div>
+                <div class="benefit-card">
+                    <i class="fas fa-users"></i>
+                    <h3>Workshop ฟรี</h3>
+                    <p>เข้าร่วม Workshop สอนทำเค้กฟรีทุกเดือน</p>
+                </div>
+                <div class="benefit-card">
+                    <i class="fas fa-bell"></i>
+                    <h3>ข่าวสารล่าสุด</h3>
+                    <p>รับข่าวสารและอัปเดตใหม่ๆ ก่อนใคร</p>
+                </div>
+                <div class="benefit-card">
+                    <i class="fas fa-heart"></i>
+                    <h3>สั่งทำเค้กพิเศษ</h3>
+                    <p>สิทธิ์สั่งทำเค้กแบบพิเศษและส่วนลดเพิ่มเติม</p>
+                </div>
+                <div class="benefit-card">
+                    <i class="fas fa-star"></i>
+                    <h3>คะแนนสะสม</h3>
+                    <p>สะสมคะแนนจากการซื้อเพื่อแลกของรางวัล</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer style="background-color: var(--text-gray); color: var(--white); padding: var(--spacing-xl) 0; text-align: center;">
+        <div class="container">
+            <h3 style="color: var(--primary-pink); margin-bottom: var(--spacing-sm);">🍰 Fadia Bakery</h3>
+            <p>เติมความหวานให้ทุกโอกาสพิเศษ</p>
+            <p style="margin-top: var(--spacing-md); font-size: 0.9rem;">
+                📍 123 ถนนสุขุมวิท กรุงเทพฯ 10110 | 📞 02-123-4567 | 📧 info@fadiabakery.com
+            </p>
+        </div>
+    </footer>
+
+    <!-- Firebase SDK -->
+    <script type="module">
+        import { registerUser } from './firebase-utils.js';
+        
+        // Form submission
+        document.getElementById('registerForm').addEventListener('submit', async function(e) {
+            e.preventDefault();
+            
+            const formData = new FormData(this);
+            const name = formData.get('name').trim();
+            const email = formData.get('email').trim();
+            const phone = formData.get('phone').trim();
+            const password = formData.get('password');
+            const confirmPassword = formData.get('confirmPassword');
+            const address = formData.get('address').trim();
+            
+            // Validation
+            if (password !== confirmPassword) {
+                alert('รหัสผ่านไม่ตรงกัน กรุณาตรวจสอบอีกครั้ง');
+                return;
+            }
+            
+            if (password.length < 6) {
+                alert('รหัสผ่านต้องมีอย่างน้อย 6 ตัวอักษร');
+                return;
+            }
+            
+            if (!document.getElementById('agreeTerms').checked) {
+                alert('กรุณายอมรับข้อกำหนดและเงื่อนไขการใช้งาน');
+                return;
+            }
+            
+            // Get interests
+            const interests = [];
+            document.querySelectorAll('input[name="interests"]:checked').forEach(checkbox => {
+                interests.push(checkbox.value);
+            });
+            
+            // Show loading
+            const submitBtn = this.querySelector('button[type="submit"]');
+            const originalText = submitBtn.innerHTML;
+            submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> กำลังสมัครสมาชิก...';
+            submitBtn.disabled = true;
+            
+            try {
+                const result = await registerUser(email, password, {
+                    name,
+                    email,
+                    phone,
+                    address,
+                    interests
+                });
+                
+                if (result.success) {
+                    // Show success message
+                    document.getElementById('registerForm').style.display = 'none';
+                    document.getElementById('successMessage').style.display = 'block';
+                } else {
+                    alert('เกิดข้อผิดพลาด: ' + result.error);
+                }
+            } catch (error) {
+                alert('เกิดข้อผิดพลาด: ' + error.message);
+            } finally {
+                // Reset button
+                submitBtn.innerHTML = originalText;
+                submitBtn.disabled = false;
+            }
+        });
+        
+        // Real-time password confirmation
+        document.getElementById('confirmPassword').addEventListener('input', function() {
+            const password = document.getElementById('password').value;
+            const confirmPassword = this.value;
+            
+            if (confirmPassword && password !== confirmPassword) {
+                this.style.borderColor = '#ff6b6b';
+            } else {
+                this.style.borderColor = '#e0e0e0';
+            }
+        });
+    </script>
+</body>
+</html>

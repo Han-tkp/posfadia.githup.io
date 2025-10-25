@@ -1,0 +1,586 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>แดชบอร์ดสมาชิก - Fadia Bakery</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        .member-header {
+            background: linear-gradient(135deg, var(--pastel-pink) 0%, var(--light-cream) 100%);
+            padding: var(--spacing-xl) 0;
+            text-align: center;
+        }
+        
+        .member-header h1 {
+            font-size: 2.5rem;
+            color: var(--primary-pink);
+            margin-bottom: var(--spacing-sm);
+        }
+        
+        .member-nav {
+            background-color: var(--white);
+            box-shadow: 0 2px 10px var(--shadow);
+            padding: var(--spacing-sm) 0;
+            margin-bottom: var(--spacing-lg);
+        }
+        
+        .member-nav-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .member-info {
+            display: flex;
+            align-items: center;
+            gap: var(--spacing-md);
+        }
+        
+        .member-avatar {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background-color: var(--primary-pink);
+            color: var(--white);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 600;
+            font-size: 1.2rem;
+        }
+        
+        .member-details h3 {
+            color: var(--primary-pink);
+            margin: 0;
+        }
+        
+        .member-details p {
+            color: var(--text-gray);
+            margin: 0;
+            font-size: 0.9rem;
+        }
+        
+        .logout-btn {
+            background-color: #ff6b6b;
+            color: var(--white);
+            border: none;
+            padding: var(--spacing-sm) var(--spacing-md);
+            border-radius: var(--radius-sm);
+            cursor: pointer;
+            font-weight: 500;
+            transition: background-color 0.3s ease;
+        }
+        
+        .logout-btn:hover {
+            background-color: #ff5252;
+        }
+        
+        .dashboard-grid {
+            display: grid;
+            grid-template-columns: 2fr 1fr;
+            gap: var(--spacing-xl);
+        }
+        
+        .main-content {
+            display: flex;
+            flex-direction: column;
+            gap: var(--spacing-lg);
+        }
+        
+        .sidebar {
+            display: flex;
+            flex-direction: column;
+            gap: var(--spacing-lg);
+        }
+        
+        .welcome-card {
+            background-color: var(--white);
+            border-radius: var(--radius-lg);
+            padding: var(--spacing-xl);
+            box-shadow: 0 4px 20px var(--shadow);
+            text-align: center;
+        }
+        
+        .welcome-card h2 {
+            color: var(--primary-pink);
+            margin-bottom: var(--spacing-md);
+        }
+        
+        .quick-actions {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: var(--spacing-md);
+            margin-top: var(--spacing-lg);
+        }
+        
+        .quick-action {
+            background-color: var(--pastel-pink);
+            border-radius: var(--radius-md);
+            padding: var(--spacing-md);
+            text-align: center;
+            text-decoration: none;
+            color: var(--text-gray);
+            transition: all 0.3s ease;
+        }
+        
+        .quick-action:hover {
+            background-color: var(--primary-pink);
+            color: var(--white);
+            transform: translateY(-2px);
+        }
+        
+        .quick-action i {
+            font-size: 2rem;
+            margin-bottom: var(--spacing-sm);
+            display: block;
+        }
+        
+        .news-section {
+            background-color: var(--white);
+            border-radius: var(--radius-lg);
+            padding: var(--spacing-lg);
+            box-shadow: 0 4px 20px var(--shadow);
+        }
+        
+        .news-section h2 {
+            color: var(--primary-pink);
+            margin-bottom: var(--spacing-lg);
+        }
+        
+        .news-item {
+            padding: var(--spacing-md);
+            border-bottom: 1px solid #e0e0e0;
+            transition: background-color 0.3s ease;
+        }
+        
+        .news-item:hover {
+            background-color: var(--pastel-pink);
+        }
+        
+        .news-item:last-child {
+            border-bottom: none;
+        }
+        
+        .news-item h3 {
+            color: var(--primary-pink);
+            margin-bottom: var(--spacing-xs);
+            font-size: 1rem;
+        }
+        
+        .news-item p {
+            color: var(--text-gray);
+            font-size: 0.9rem;
+            margin: 0;
+        }
+        
+        .news-date {
+            color: var(--soft-gold);
+            font-size: 0.8rem;
+        }
+        
+        .workshops-section {
+            background-color: var(--white);
+            border-radius: var(--radius-lg);
+            padding: var(--spacing-lg);
+            box-shadow: 0 4px 20px var(--shadow);
+        }
+        
+        .workshops-section h2 {
+            color: var(--primary-pink);
+            margin-bottom: var(--spacing-lg);
+        }
+        
+        .workshop-item {
+            background-color: var(--pastel-pink);
+            border-radius: var(--radius-md);
+            padding: var(--spacing-md);
+            margin-bottom: var(--spacing-md);
+        }
+        
+        .workshop-item:last-child {
+            margin-bottom: 0;
+        }
+        
+        .workshop-item h3 {
+            color: var(--primary-pink);
+            margin-bottom: var(--spacing-xs);
+        }
+        
+        .workshop-item p {
+            color: var(--text-gray);
+            font-size: 0.9rem;
+            margin: 0;
+        }
+        
+        .workshop-date {
+            color: var(--soft-gold);
+            font-weight: 500;
+        }
+        
+        .member-stats {
+            background-color: var(--white);
+            border-radius: var(--radius-lg);
+            padding: var(--spacing-lg);
+            box-shadow: 0 4px 20px var(--shadow);
+        }
+        
+        .member-stats h2 {
+            color: var(--primary-pink);
+            margin-bottom: var(--spacing-lg);
+        }
+        
+        .stat-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: var(--spacing-sm) 0;
+            border-bottom: 1px solid #e0e0e0;
+        }
+        
+        .stat-item:last-child {
+            border-bottom: none;
+        }
+        
+        .stat-label {
+            color: var(--text-gray);
+        }
+        
+        .stat-value {
+            color: var(--primary-pink);
+            font-weight: 600;
+        }
+        
+        .loading {
+            text-align: center;
+            padding: var(--spacing-xl);
+            color: var(--text-gray);
+        }
+        
+        .loading i {
+            font-size: 2rem;
+            color: var(--primary-pink);
+            animation: spin 1s linear infinite;
+        }
+        
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+        
+        @media (max-width: 768px) {
+            .dashboard-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .member-nav-container {
+                flex-direction: column;
+                gap: var(--spacing-sm);
+            }
+            
+            .member-info {
+                flex-direction: column;
+                text-align: center;
+            }
+            
+            .quick-actions {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Member Header -->
+    <header class="member-header">
+        <div class="container">
+            <h1>🌟 ยินดีต้อนรับสู่ Fadia Bakery</h1>
+            <p>แดชบอร์ดสมาชิกของคุณ</p>
+        </div>
+    </header>
+
+    <!-- Member Navigation -->
+    <nav class="member-nav">
+        <div class="container">
+            <div class="member-nav-container">
+                <div class="member-info">
+                    <div class="member-avatar" id="memberAvatar">U</div>
+                    <div class="member-details">
+                        <h3 id="memberName">สมาชิก</h3>
+                        <p id="memberEmail">อีเมล</p>
+                    </div>
+                </div>
+                <button class="logout-btn" onclick="logout()">
+                    <i class="fas fa-sign-out-alt"></i> ออกจากระบบ
+                </button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Dashboard Content -->
+    <section class="section">
+        <div class="container">
+            <div class="dashboard-grid">
+                <!-- Main Content -->
+                <div class="main-content">
+                    <!-- Welcome Card -->
+                    <div class="welcome-card">
+                        <h2>🎉 ยินดีต้อนรับ!</h2>
+                        <p>ขอบคุณที่เข้าร่วมเป็นสมาชิกครอบครัว Fadia Bakery</p>
+                        <p>คุณสามารถใช้สิทธิพิเศษต่างๆ ได้แล้ว</p>
+                        
+                        <div class="quick-actions">
+                            <a href="/products" class="quick-action">
+                                <i class="fas fa-birthday-cake"></i>
+                                <div>สั่งซื้อเค้ก</div>
+                            </a>
+                            <a href="/custom-order" class="quick-action">
+                                <i class="fas fa-palette"></i>
+                                <div>สั่งทำเค้กพิเศษ</div>
+                            </a>
+                            <a href="/cart" class="quick-action">
+                                <i class="fas fa-shopping-cart"></i>
+                                <div>ตะกร้าสินค้า</div>
+                            </a>
+                            <a href="/contact" class="quick-action">
+                                <i class="fas fa-phone"></i>
+                                <div>ติดต่อเรา</div>
+                            </a>
+                        </div>
+                    </div>
+
+                    <!-- News Section -->
+                    <div class="news-section">
+                        <h2>📰 ข่าวสารล่าสุด</h2>
+                        <div id="newsLoading" class="loading">
+                            <i class="fas fa-spinner"></i>
+                            <p>กำลังโหลดข่าวสาร...</p>
+                        </div>
+                        <div id="newsContent" style="display: none;">
+                            <!-- News items will be loaded here -->
+                        </div>
+                        <div id="noNews" style="display: none; text-align: center; padding: var(--spacing-xl); color: var(--text-gray);">
+                            <i class="fas fa-newspaper" style="font-size: 3rem; color: var(--primary-pink); margin-bottom: var(--spacing-md);"></i>
+                            <p>ยังไม่มีข่าวสารใหม่</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Sidebar -->
+                <div class="sidebar">
+                    <!-- Member Stats -->
+                    <div class="member-stats">
+                        <h2>📊 สถิติของคุณ</h2>
+                        <div class="stat-item">
+                            <span class="stat-label">วันที่สมัครสมาชิก</span>
+                            <span class="stat-value" id="joinDate">-</span>
+                        </div>
+                        <div class="stat-item">
+                            <span class="stat-label">ประเภทสมาชิก</span>
+                            <span class="stat-value" id="memberType">-</span>
+                        </div>
+                        <div class="stat-item">
+                            <span class="stat-label">การแจ้งเตือน</span>
+                            <span class="stat-value" id="notifications">-</span>
+                        </div>
+                        <div class="stat-item">
+                            <span class="stat-label">Workshop</span>
+                            <span class="stat-value" id="workshops">-</span>
+                        </div>
+                    </div>
+
+                    <!-- Upcoming Workshops -->
+                    <div class="workshops-section">
+                        <h2>🎓 Workshop ที่จะมาถึง</h2>
+                        <div id="workshopsLoading" class="loading">
+                            <i class="fas fa-spinner"></i>
+                            <p>กำลังโหลด Workshop...</p>
+                        </div>
+                        <div id="workshopsContent" style="display: none;">
+                            <!-- Workshop items will be loaded here -->
+                        </div>
+                        <div id="noWorkshops" style="display: none; text-align: center; padding: var(--spacing-xl); color: var(--text-gray);">
+                            <i class="fas fa-calendar" style="font-size: 3rem; color: var(--primary-pink); margin-bottom: var(--spacing-md);"></i>
+                            <p>ยังไม่มี Workshop ที่จะมาถึง</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer style="background-color: var(--text-gray); color: var(--white); padding: var(--spacing-xl) 0; text-align: center;">
+        <div class="container">
+            <h3 style="color: var(--primary-pink); margin-bottom: var(--spacing-sm);">🍰 Fadia Bakery</h3>
+            <p>เติมความหวานให้ทุกโอกาสพิเศษ</p>
+            <p style="margin-top: var(--spacing-md); font-size: 0.9rem;">
+                📍 123 ถนนสุขุมวิท กรุงเทพฯ 10110 | 📞 02-123-4567 | 📧 info@fadiabakery.com
+            </p>
+        </div>
+    </footer>
+
+    <!-- Firebase SDK -->
+    <script type="module">
+        import { getMemberData, getNews, getWorkshops, logoutUser, onAuthStateChange } from './firebase-utils.js';
+        
+        let currentUser = null;
+        let memberData = null;
+        
+        // Check authentication
+        onAuthStateChange(async (user) => {
+            if (!user) {
+                window.location.href = '/member-login';
+                return;
+            }
+            
+            if (user.email === 'fadia@bkr.web.app') {
+                window.location.href = '/admin-dashboard';
+                return;
+            }
+            
+            currentUser = user;
+            await loadMemberData();
+            await loadNews();
+            await loadWorkshops();
+        });
+        
+        // Load member data
+        async function loadMemberData() {
+            try {
+                const result = await getMemberData(currentUser.uid);
+                
+                if (result.success) {
+                    memberData = result.data;
+                    updateMemberInfo();
+                } else {
+                    console.error('Error loading member data:', result.error);
+                }
+            } catch (error) {
+                console.error('Error loading member data:', error);
+            }
+        }
+        
+        // Update member info display
+        function updateMemberInfo() {
+            if (!memberData) return;
+            
+            // Update avatar
+            const avatar = document.getElementById('memberAvatar');
+            avatar.textContent = memberData.name.charAt(0).toUpperCase();
+            
+            // Update name and email
+            document.getElementById('memberName').textContent = memberData.name;
+            document.getElementById('memberEmail').textContent = memberData.email;
+            
+            // Update stats
+            const joinDate = memberData.joinDate.toDate();
+            document.getElementById('joinDate').textContent = joinDate.toLocaleDateString('th-TH');
+            
+            const memberTypeText = memberData.memberType === 'vip' ? 'VIP' : 'ทั่วไป';
+            document.getElementById('memberType').textContent = memberTypeText;
+            
+            document.getElementById('notifications').textContent = memberData.preferences?.notifications ? 'เปิด' : 'ปิด';
+            document.getElementById('workshops').textContent = memberData.preferences?.workshops ? 'เปิด' : 'ปิด';
+        }
+        
+        // Load news
+        async function loadNews() {
+            try {
+                const result = await getNews();
+                
+                document.getElementById('newsLoading').style.display = 'none';
+                
+                if (result.success && result.news.length > 0) {
+                    displayNews(result.news);
+                } else {
+                    document.getElementById('noNews').style.display = 'block';
+                }
+            } catch (error) {
+                console.error('Error loading news:', error);
+                document.getElementById('newsLoading').style.display = 'none';
+                document.getElementById('noNews').style.display = 'block';
+            }
+        }
+        
+        // Display news
+        function displayNews(news) {
+            const newsContent = document.getElementById('newsContent');
+            newsContent.innerHTML = '';
+            
+            news.slice(0, 5).forEach(item => {
+                const newsItem = document.createElement('div');
+                newsItem.className = 'news-item';
+                
+                const date = item.createdAt.toDate();
+                const formattedDate = date.toLocaleDateString('th-TH');
+                
+                newsItem.innerHTML = `
+                    <h3>${item.title}</h3>
+                    <p>${item.content}</p>
+                    <div class="news-date">${formattedDate}</div>
+                `;
+                
+                newsContent.appendChild(newsItem);
+            });
+            
+            newsContent.style.display = 'block';
+        }
+        
+        // Load workshops
+        async function loadWorkshops() {
+            try {
+                const result = await getWorkshops();
+                
+                document.getElementById('workshopsLoading').style.display = 'none';
+                
+                if (result.success && result.workshops.length > 0) {
+                    displayWorkshops(result.workshops);
+                } else {
+                    document.getElementById('noWorkshops').style.display = 'block';
+                }
+            } catch (error) {
+                console.error('Error loading workshops:', error);
+                document.getElementById('workshopsLoading').style.display = 'none';
+                document.getElementById('noWorkshops').style.display = 'block';
+            }
+        }
+        
+        // Display workshops
+        function displayWorkshops(workshops) {
+            const workshopsContent = document.getElementById('workshopsContent');
+            workshopsContent.innerHTML = '';
+            
+            workshops.slice(0, 3).forEach(workshop => {
+                const workshopItem = document.createElement('div');
+                workshopItem.className = 'workshop-item';
+                
+                const date = workshop.date.toDate();
+                const formattedDate = date.toLocaleDateString('th-TH');
+                
+                workshopItem.innerHTML = `
+                    <h3>${workshop.title}</h3>
+                    <p>${workshop.description}</p>
+                    <div class="workshop-date">📅 ${formattedDate}</div>
+                `;
+                
+                workshopsContent.appendChild(workshopItem);
+            });
+            
+            workshopsContent.style.display = 'block';
+        }
+        
+        // Logout
+        window.logout = async function() {
+            if (confirm('คุณต้องการออกจากระบบหรือไม่?')) {
+                try {
+                    await logoutUser();
+                    window.location.href = '/member-login';
+                } catch (error) {
+                    console.error('Logout error:', error);
+                }
+            }
+        };
+    </script>
+</body>
+</html>

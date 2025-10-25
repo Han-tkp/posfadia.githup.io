@@ -1,0 +1,436 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>เข้าสู่ระบบ - Fadia Bakery</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        .login-hero {
+            background: linear-gradient(135deg, var(--pastel-pink) 0%, var(--light-cream) 100%);
+            padding: var(--spacing-xl) 0;
+            text-align: center;
+        }
+        
+        .login-hero h1 {
+            font-size: 3rem;
+            color: var(--primary-pink);
+            margin-bottom: var(--spacing-md);
+        }
+        
+        .login-hero p {
+            font-size: 1.2rem;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+        
+        .login-container {
+            max-width: 500px;
+            margin: 0 auto;
+        }
+        
+        .login-tabs {
+            display: flex;
+            margin-bottom: var(--spacing-lg);
+            border-radius: var(--radius-md);
+            overflow: hidden;
+            box-shadow: 0 4px 20px var(--shadow);
+        }
+        
+        .login-tab {
+            flex: 1;
+            padding: var(--spacing-md);
+            background-color: var(--white);
+            border: none;
+            cursor: pointer;
+            font-family: var(--font-heading);
+            font-weight: 500;
+            transition: all 0.3s ease;
+        }
+        
+        .login-tab.active {
+            background-color: var(--primary-pink);
+            color: var(--white);
+        }
+        
+        .login-tab:hover:not(.active) {
+            background-color: var(--pastel-pink);
+        }
+        
+        .login-form {
+            background-color: var(--white);
+            border-radius: var(--radius-lg);
+            padding: var(--spacing-xl);
+            box-shadow: 0 4px 20px var(--shadow);
+        }
+        
+        .login-content {
+            display: none;
+        }
+        
+        .login-content.active {
+            display: block;
+        }
+        
+        .form-group {
+            margin-bottom: var(--spacing-md);
+        }
+        
+        .form-group label {
+            display: block;
+            margin-bottom: var(--spacing-xs);
+            font-weight: 500;
+            color: var(--text-gray);
+        }
+        
+        .form-control {
+            width: 100%;
+            padding: var(--spacing-sm);
+            border: 2px solid #e0e0e0;
+            border-radius: var(--radius-sm);
+            font-family: var(--font-body);
+            font-size: 1rem;
+            transition: border-color 0.3s ease;
+        }
+        
+        .form-control:focus {
+            outline: none;
+            border-color: var(--primary-pink);
+            box-shadow: 0 0 0 3px rgba(231, 84, 128, 0.1);
+        }
+        
+        .remember-forgot {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: var(--spacing-lg);
+        }
+        
+        .remember-me {
+            display: flex;
+            align-items: center;
+        }
+        
+        .remember-me input {
+            margin-right: var(--spacing-xs);
+        }
+        
+        .forgot-password {
+            color: var(--primary-pink);
+            text-decoration: none;
+            font-size: 0.9rem;
+        }
+        
+        .forgot-password:hover {
+            text-decoration: underline;
+        }
+        
+        .login-btn {
+            width: 100%;
+            margin-bottom: var(--spacing-md);
+        }
+        
+        .divider {
+            text-align: center;
+            margin: var(--spacing-lg) 0;
+            position: relative;
+        }
+        
+        .divider::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 0;
+            right: 0;
+            height: 1px;
+            background-color: #e0e0e0;
+        }
+        
+        .divider span {
+            background-color: var(--white);
+            padding: 0 var(--spacing-md);
+            color: var(--text-gray);
+        }
+        
+        .register-link {
+            text-align: center;
+            margin-top: var(--spacing-lg);
+            padding: var(--spacing-md);
+            background-color: var(--pastel-pink);
+            border-radius: var(--radius-md);
+        }
+        
+        .admin-info {
+            background-color: #fff3cd;
+            border: 1px solid #ffeaa7;
+            border-radius: var(--radius-sm);
+            padding: var(--spacing-md);
+            margin-bottom: var(--spacing-md);
+        }
+        
+        .admin-info h4 {
+            color: #856404;
+            margin-bottom: var(--spacing-xs);
+        }
+        
+        .admin-info p {
+            color: #856404;
+            font-size: 0.9rem;
+            margin: 0;
+        }
+        
+        @media (max-width: 768px) {
+            .login-hero h1 {
+                font-size: 2rem;
+            }
+            
+            .remember-forgot {
+                flex-direction: column;
+                gap: var(--spacing-sm);
+                align-items: flex-start;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="container">
+            <div class="nav-container">
+                <a href="/" class="logo">🍰 Fadia Bakery</a>
+                <ul class="nav-menu">
+                    <li><a href="/">หน้าแรก</a></li>
+                    <li><a href="/products">เค้กทั้งหมด</a></li>
+                    <li><a href="/custom-order">สั่งทำเค้ก</a></li>
+                    <li><a href="/about">เกี่ยวกับเรา</a></li>
+                    <li><a href="/contact">ติดต่อเรา</a></li>
+                    <li><a href="/cart">ตะกร้า</a></li>
+                    <li><a href="/member-login" class="text-pink">เข้าสู่ระบบ</a></li>
+                    <li><a href="/member-register">สมัครสมาชิก</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Login Hero -->
+    <section class="login-hero">
+        <div class="container">
+            <h1>🔐 เข้าสู่ระบบ</h1>
+            <p>เข้าสู่ระบบเพื่อใช้สิทธิพิเศษและบริการต่างๆ ของเรา</p>
+        </div>
+    </section>
+
+    <!-- Login Form -->
+    <section class="section">
+        <div class="container">
+            <div class="login-container">
+                <div class="login-tabs">
+                    <button class="login-tab active" onclick="switchTab('member')">
+                        <i class="fas fa-user"></i> สมาชิก
+                    </button>
+                    <button class="login-tab" onclick="switchTab('admin')">
+                        <i class="fas fa-crown"></i> เจ้าของร้าน
+                    </button>
+                </div>
+                
+                <!-- Member Login -->
+                <div class="login-content active" id="memberLogin">
+                    <div class="login-form">
+                        <h2>👤 เข้าสู่ระบบสมาชิก</h2>
+                        <form id="memberLoginForm">
+                            <div class="form-group">
+                                <label>อีเมล:</label>
+                                <input type="email" class="form-control" id="memberEmail" required>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label>รหัสผ่าน:</label>
+                                <input type="password" class="form-control" id="memberPassword" required>
+                            </div>
+                            
+                            <div class="remember-forgot">
+                                <div class="remember-me">
+                                    <input type="checkbox" id="rememberMe">
+                                    <label for="rememberMe">จดจำการเข้าสู่ระบบ</label>
+                                </div>
+                                <a href="#" class="forgot-password">ลืมรหัสผ่าน?</a>
+                            </div>
+                            
+                            <button type="submit" class="btn btn-primary btn-large login-btn">
+                                <i class="fas fa-sign-in-alt"></i> เข้าสู่ระบบ
+                            </button>
+                        </form>
+                        
+                        <div class="divider">
+                            <span>หรือ</span>
+                        </div>
+                        
+                        <div class="text-center">
+                            <a href="/member-register" class="btn btn-secondary btn-large">
+                                <i class="fas fa-user-plus"></i> สมัครสมาชิกใหม่
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Admin Login -->
+                <div class="login-content" id="adminLogin">
+                    <div class="login-form">
+                        <h2>👑 เข้าสู่ระบบเจ้าของร้าน</h2>
+                        
+                        <div class="admin-info">
+                            <h4><i class="fas fa-info-circle"></i> ข้อมูลสำหรับทดสอบ</h4>
+                            <p>อีเมล: fadia@bkr.web.app</p>
+                            <p>รหัสผ่าน: [รหัสผ่านที่ตั้งไว้ใน Firebase Authentication]</p>
+                        </div>
+                        
+                        <form id="adminLoginForm">
+                            <div class="form-group">
+                                <label>อีเมล:</label>
+                                <input type="email" class="form-control" id="adminEmail" value="fadia@bkr.web.app" required>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label>รหัสผ่าน:</label>
+                                <input type="password" class="form-control" id="adminPassword" required>
+                            </div>
+                            
+                            <div class="remember-forgot">
+                                <div class="remember-me">
+                                    <input type="checkbox" id="adminRememberMe">
+                                    <label for="adminRememberMe">จดจำการเข้าสู่ระบบ</label>
+                                </div>
+                            </div>
+                            
+                            <button type="submit" class="btn btn-primary btn-large login-btn">
+                                <i class="fas fa-sign-in-alt"></i> เข้าสู่ระบบเจ้าของร้าน
+                            </button>
+                        </form>
+                    </div>
+                </div>
+                
+                <div class="register-link">
+                    <p>ยังไม่มีบัญชี? <a href="/member-register" style="color: var(--primary-pink); font-weight: 500;">สมัครสมาชิกที่นี่</a></p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer style="background-color: var(--text-gray); color: var(--white); padding: var(--spacing-xl) 0; text-align: center;">
+        <div class="container">
+            <h3 style="color: var(--primary-pink); margin-bottom: var(--spacing-sm);">🍰 Fadia Bakery</h3>
+            <p>เติมความหวานให้ทุกโอกาสพิเศษ</p>
+            <p style="margin-top: var(--spacing-md); font-size: 0.9rem;">
+                📍 123 ถนนสุขุมวิท กรุงเทพฯ 10110 | 📞 02-123-4567 | 📧 info@fadiabakery.com
+            </p>
+        </div>
+    </footer>
+
+    <!-- Firebase SDK -->
+    <script type="module">
+        import { loginUser, onAuthStateChange } from './firebase-utils.js';
+        
+        // Tab switching
+        window.switchTab = function(tab) {
+            // Update tab buttons
+            document.querySelectorAll('.login-tab').forEach(btn => btn.classList.remove('active'));
+            event.target.classList.add('active');
+            
+            // Update content
+            document.querySelectorAll('.login-content').forEach(content => content.classList.remove('active'));
+            document.getElementById(tab + 'Login').classList.add('active');
+        };
+        
+        // Member login form
+        document.getElementById('memberLoginForm').addEventListener('submit', async function(e) {
+            e.preventDefault();
+            
+            const email = document.getElementById('memberEmail').value.trim();
+            const password = document.getElementById('memberPassword').value;
+            
+            if (!email || !password) {
+                alert('กรุณากรอกข้อมูลให้ครบถ้วน');
+                return;
+            }
+            
+            // Show loading
+            const submitBtn = this.querySelector('button[type="submit"]');
+            const originalText = submitBtn.innerHTML;
+            submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> กำลังเข้าสู่ระบบ...';
+            submitBtn.disabled = true;
+            
+            try {
+                const result = await loginUser(email, password);
+                
+                if (result.success) {
+                    // Redirect to member dashboard
+                    window.location.href = '/member-dashboard';
+                } else {
+                    alert('เข้าสู่ระบบไม่สำเร็จ: ' + result.error);
+                }
+            } catch (error) {
+                alert('เกิดข้อผิดพลาด: ' + error.message);
+            } finally {
+                // Reset button
+                submitBtn.innerHTML = originalText;
+                submitBtn.disabled = false;
+            }
+        });
+        
+        // Admin login form
+        document.getElementById('adminLoginForm').addEventListener('submit', async function(e) {
+            e.preventDefault();
+            
+            const email = document.getElementById('adminEmail').value.trim();
+            const password = document.getElementById('adminPassword').value;
+            
+            if (!email || !password) {
+                alert('กรุณากรอกข้อมูลให้ครบถ้วน');
+                return;
+            }
+            
+            // Show loading
+            const submitBtn = this.querySelector('button[type="submit"]');
+            const originalText = submitBtn.innerHTML;
+            submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> กำลังเข้าสู่ระบบ...';
+            submitBtn.disabled = true;
+            
+            try {
+                const result = await loginUser(email, password);
+                
+                if (result.success) {
+                    // Check if user is admin
+                    if (email === 'fadia@bkr.web.app') {
+                        // Redirect to admin dashboard
+                        window.location.href = '/admin-dashboard';
+                    } else {
+                        alert('คุณไม่มีสิทธิ์เข้าถึงระบบเจ้าของร้าน');
+                        await logoutUser();
+                    }
+                } else {
+                    alert('เข้าสู่ระบบไม่สำเร็จ: ' + result.error);
+                }
+            } catch (error) {
+                alert('เกิดข้อผิดพลาด: ' + error.message);
+            } finally {
+                // Reset button
+                submitBtn.innerHTML = originalText;
+                submitBtn.disabled = false;
+            }
+        });
+        
+        // Check if user is already logged in
+        onAuthStateChange((user) => {
+            if (user) {
+                if (user.email === 'fadia@bkr.web.app') {
+                    window.location.href = '/admin-dashboard';
+                } else {
+                    window.location.href = '/member-dashboard';
+                }
+            }
+        });
+    </script>
+</body>
+</html>
